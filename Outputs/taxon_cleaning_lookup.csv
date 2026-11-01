@@ -1,260 +1,259 @@
 taxon_raw,clean_taxon_name
-acanthophora_spicifera,
-actinopyga_varians,
-ahnfeltiopsis_concinna,
-ahnfeltiopsis_flabelliformis,
-ahnfeltiopsis_sp,
-aiptasia_pulchella,
-akalaphycus_setchelliae,
-amansia_glomerata,
-amansia_sp,
-amphipod_spp,
-anthopleura_nigrescens,
-aplysia_spp,
-articulated_coralline,
-articulated_corallines,
-asparagopsis_sp,
-asparagopsis_taxiformis,
-asteronema_breviarticulatum,
-astronema_breviarticulatum,
-astronema_sp,
-avrainvillea_amadelpha,
-avrainvillea_lacerata,
-avrainvillea_sp,
-bare_rock,
-barnacles_spp,
-basalt,
-bleached_coral,
-boodlea_composita,
-bornatella_sphaerica,
-bornetella_sphaerica,
-botryocladia_skottsbergii,
-botryocladia_sp,
-brachidontes_crebristriatus,
-brittle_star,
-brown_crust,
-brown_orange_crust,
-bryopsis_sp,
-bryopsis_spp,
-calcinus_elegans,
-calcinus_laevimanus,
-calcinus_seurati,
-caulerpa_racemosa,
-caulerpa_sertularioides,
-caulerpa_spp,
-cca,
-cellana_exarata,
-cellana_sandwicensis,
-centroceras_clavulatum,
-cerracia,
-cerramium_sp,
-chaetomorpha_antennina,
-chaetomorpha_basiretrorsa,
-champia_parvula,
-chnoospora_minima,
-chnoospora_sp,
-chondria_spp,
-cladophora_or_cladophoropsis_spp,
-cladophora_sp,
-codium_arabicum,
-codium_edule,
-codium_reediae,
-codium_sp,
-codium_spp,
-coelothrix_irregularis,
-colobocentrotus_atratus,
-colpomenia_sinuosa,
-colpomenia_sp,
-conus_ebraeus,
-conus_spp,
-coral_spp,
-crab,
-crab_spp,
-crustose_coralline_algae,
-cucumber_actinopyga,
-cucumber_holothuria,
-cyanobacteria,
-cyanobacteria_spp,
-cypraea_tigris,
-dasya_iridescens,
-dasya_spp,
-dendropoma_gregaria,
-diadema_paucispinum,
-dichotomaria_marginata,
-dichtyopterous,
-dictyopteris_spp,
-dictyosphaeria_cavernosa,
-dictyosphaeria_sp,
-dictyosphaeria_spp,
-dictyosphaeria_versluysii,
-dictyota_acutiloba,
-dictyota_sandvicensis,
-dictyota_sp,
-dictyota_spp,
-drupa_morum,
-echinolittorina_hawaiiensis,
-echinometra,
-echinometra_mathaei,
-echinometra_oblonga,
-echinometra_sp,
-echinothrix_spp,
-fireworm_spp,
-galaxaura,
-galaxaura_or_liagora_sp,
-galaxaura_spp,
-gelid_spp,
-gelidiella_acerosa,
-gelidiella_sp,
-gelidiopsis_intricata,
-gelidiopsis_spp,
-gelidium_pusillum,
-gracilaria_salicornia,
-gracilaria_salicronia,
-gracilaria_sp,
-grapsus_tenuicrustatus,
-grateloupia_spp,
-griffithsia_spp,
-halimeda_discoidea,
-halimeda_sp,
-haminoea_cymbalum,
-haminoea_cymbalum_green_snail,
-hermet_crab,
-hermit_crab,
-hole,
-holothuria_atra,
-holothuria_cinerascens,
-holothuria_difficilis,
-holothuria_hilla,
-holothuria_pardalis,
-holothuria_spp,
-holothuria_whitmaei,
-hydroclathrus_clathratus,
-hypnea_cervicornis,
-hypnea_chordacea,
-hypnea_musciformis,
-hypnea_sp,
-hypnea_spp,
-isognomon_californicum,
-isognomon_perna,
-jania_pumila,
-jania_sp,
-laurencia_crustiformans,
-laurencia_dendroidea,
-laurencia_dotyi,
-laurencia_majuscula,
-laurencia_mcdermidiae,
-laurencia_nidifica,
-laurencia_sp,
-laurencia_spp,
-leptolyngbya_crosbyana,
-liagora_sp,
-liagora_spp,
-limestone,
-limpet,
-littoraria_pintado,
-lobophora_obscura,
-lobophora_sp,
-lobophora_variegata,
-loimia_medusa,
-lyngbya_majuscula,
-lyngbya_sp,
-martensia_spp,
-mauritia_mauritiana,
-microdictyon_setchellianum,
-microdictyon_sp,
-monetaria_caputserpentis,
-montipora_capitata,
-montipora_sp,
-morula_granulata,
-morula_sp,
-morula_uva,
-mud_silt,
-neomeris,
-neomeris_sp,
-neomeris_spp,
-nerita_picea,
-nerita_polita,
-nesochthamalus_intertextus,
-onchidium_verruculatum,
-ophiocoma_brevipes,
-ophiocoma_erinaceus,
-padina_sp,
-padina_spp,
-palisada_parvipapillata,
-palythoa_caesia,
-parvocaulis_parvulus,
-peasiella_tantilla,
-pebble,
-pennaria_disticha,
-pennaria_disticha_christmas_tree_hydroid,
-pocillopora_damicornis,
-pocillopora_sp,
-porites_lobata,
-porites_sp,
-portieria,
-portieria_hornemannii,
-protopalythoa_spp,
-pterocladiella,
-pterocladiella_caerulescens,
-pterocladiella_capillacea,
-pterocladiella_spp,
-rhodymenia_spp,
-rock,
-rubble,
-sand,
-sargassum_aquifolium,
-sargassum_polyphyllum,
-sargassum_sp,
-sargassum_spp,
-sea_star,
-siphonaria_normalis,
-smaragdinella_calyculata,
-snail_dendropoma,
-snail_dendropoma_gregarium,
-snail_littoraria,
-snail_nerite,
-snail_serpulorbis,
-snail_siphonaria_normalis,
-snail_spp,
-sphacelaria_spp,
-sphaecelaria_sp,
-spirobranchus_giganteus,
-sponge,
-sponge_spp,
-spyridia_filamentosa,
-stomatopod_spp,
-stylocheilus_striatus,
-symploca_hydnoides,
-symploca_hypnoides,
-thylacodes_variabilis,
-trichogloea_sp,
-trichogloea_spp,
-tripneustes_gratilla,
-trochus_intextus,
-tube_snail,
-turbinaria_ornata,
-turf,
-turf_spp,
-ulva,
-ulva_fasciata,
-ulva_flexuosa,
-ulva_reticulata,
-ulva_spp,
-unknown,
-unknown_brown,
-unknown_bulbous_algae,
-unknown_cyanobacteria,
-unknown_fuzzy,
-unknown_green,
-unknown_polychaete,
-unknown_red,
-unknown_species,
-urchin,
-urchin_echinometra,
-urchin_ophiocoma,
-valonia_sp,
-valonia_spp,
-wrangelia,
-wrangelia_elegantissima,
-zoanthid_spp,
-NA,
+acanthophora_spicifera,Acanthophora spicifera
+actinopyga_varians,Actinopyga varians
+ahnfeltiopsis_concinna,Gymnogongrus durvillei
+ahnfeltiopsis_flabelliformis,Ahnfeltiopsis flabelliformis
+ahnfeltiopsis_sp,Ahnfeltiopsis sp
+aiptasia_pulchella,Aiptasia pulchella
+akalaphycus_setchelliae,Kappaphycus setchellii
+amansia_glomerata,Amansia glomerata
+amansia_sp,Amansia sp
+amphipod_spp,Amphipod sp
+anthopleura_nigrescens,Anthopleura nigrescens
+aplysia_spp,Aplysia sp
+articulated_coralline,Articulated Coralline
+articulated_corallines,Articulated Coralline
+asparagopsis_sp,Asparagopsis taxiformis
+asparagopsis_taxiformis,Asparagopsis taxiformis
+asteronema_breviarticulatum,Asteronema breviarticulatum
+astronema_breviarticulatum,Asteronema breviarticulatum
+astronema_sp,Asteronema breviarticulatum
+avrainvillea_amadelpha,Avrainvillea lacerata
+avrainvillea_lacerata,Avrainvillea lacerata
+avrainvillea_sp,Avrainvillea lacerata
+bare_rock,Bare Rock
+barnacles_spp,Barnacle sp
+basalt,Basalt
+bleached_coral,Bleached Coral
+boodlea_composita,Boodlea composita
+bornatella_sphaerica,Bornetella sphaerica
+bornetella_sphaerica,Bornetella sphaerica
+botryocladia_skottsbergii,Botryocladia skottsbergii
+botryocladia_sp,Botryocladia sp
+brachidontes_crebristriatus,Brachidontes crebristriatus
+brittle_star,Brittle Star sp
+brown_crust,Brown Crust
+brown_orange_crust,Brown Orange Crust
+bryopsis_sp,Bryopsis sp
+bryopsis_spp,Bryopsis sp
+calcinus_elegans,Calcinus elegans
+calcinus_laevimanus,Calcinus laevimanus
+calcinus_seurati,Calcinus seurati
+caulerpa_racemosa,Caulerpa racemosa
+caulerpa_sertularioides,Caulerpa sertularioides
+caulerpa_spp,Caulerpa sp
+cca,Crustose Coralline Algae
+cellana_exarata,Cellana exarata
+cellana_sandwicensis,Cellana sandwicensis
+centroceras_clavulatum,Centroceras clavulatum
+cerracia,Serratia sp
+cerramium_sp,Ceramium sp
+chaetomorpha_antennina,Chaetomorpha antennina
+chaetomorpha_basiretrorsa,Chaetomorpha basiretrorsa
+champia_parvula,Champia parvula
+chnoospora_minima,Chnoospora minima
+chnoospora_sp,Chnoospora minima
+chondria_spp,Chondria sp
+cladophora_or_cladophoropsis_spp,Cladophora or Cladophoropsis sp
+cladophora_sp,Cladophora sp
+codium_arabicum,Codium arabicum
+codium_edule,Codium edule
+codium_reediae,Codium reediae
+codium_sp,Codium sp
+codium_spp,Codium sp
+coelothrix_irregularis,Coelothrix irregularis
+colobocentrotus_atratus,Colobocentrotus atratus
+colpomenia_sinuosa,Colpomenia sinuosa
+colpomenia_sp,Colpomenia sp
+conus_ebraeus,Conus ebraeus
+conus_spp,Conus sp
+coral_spp,Coral sp
+crab,Crab sp
+crab_spp,Crab sp
+crustose_coralline_algae,Crustose Coralline Algae
+cucumber_actinopyga,Actinopyga sp
+cucumber_holothuria,Holothuria sp
+cyanobacteria,Cyanobacteria sp
+cyanobacteria_spp,Cyanobacteria sp
+cypraea_tigris,Cypraea tigris
+dasya_iridescens,Dasya iridescens
+dasya_spp,Dasya sp
+dendropoma_gregaria,Dendropoma gregarium
+diadema_paucispinum,Diadema paucispinum
+dichotomaria_marginata,Dichotomaria marginata
+dichtyopterous,Dictyopteris sp
+dictyopteris_spp,Dictyopteris sp
+dictyosphaeria_cavernosa,Dictyosphaeria cavernosa
+dictyosphaeria_sp,Dictyosphaeria sp
+dictyosphaeria_spp,Dictyosphaeria sp
+dictyosphaeria_versluysii,Dictyosphaeria versluysii
+dictyota_acutiloba,Dictyota acutiloba
+dictyota_sandvicensis,Dictyota sanvicensis
+dictyota_sp,Dictyota sp
+dictyota_spp,Dictyota sp
+drupa_morum,Drupa morum
+echinolittorina_hawaiiensis,Echinolittorina hawaiiensis
+echinometra,Echinometra sp
+echinometra_mathaei,Echinometra mathaei
+echinometra_oblonga,Echinometra oblonga
+echinometra_sp,Echinometra sp
+echinothrix_spp,Echinothrix sp
+fireworm_spp,Fireworm sp
+galaxaura,Galaxaura sp
+galaxaura_or_liagora_sp,Galaxaura or Liagora sp
+galaxaura_spp,Galaxaura sp
+gelid_spp,Gelidiella or Gelidium sp
+gelidiella_acerosa,Gelidiella acerosa
+gelidiella_sp,Gelidiella sp
+gelidiopsis_intricata,Ceratodictyon intricatum
+gelidiopsis_spp,Ceratodictyon sp
+gelidium_pusillum,Gelidium pusillum
+gracilaria_salicornia,Gracilaria salicornia
+gracilaria_salicronia,Gracilaria salicornia
+gracilaria_sp,Gracilaria sp
+grapsus_tenuicrustatus,Grapsus tenuicrustatus
+grateloupia_spp,Grateloupia sp
+griffithsia_spp,Griffithsia sp
+halimeda_discoidea,Halimeda discoidea
+halimeda_sp,Halimeda sp
+haminoea_cymbalum,Haminoea cymbalum
+haminoea_cymbalum_green_snail,Haminoea cymbalum
+hermet_crab,Hermit Crab sp
+hermit_crab,Hermit Crab sp
+hole,Hole
+holothuria_atra,Holothuria atra
+holothuria_cinerascens,Holothuria cinerascens
+holothuria_difficilis,Holothuria difficilis
+holothuria_hilla,Holothuria hilla
+holothuria_pardalis,Holothuria pardalis
+holothuria_spp,Holothuria sp
+holothuria_whitmaei,Holothuria whitmaei
+hydroclathrus_clathratus,Hydroclathrus clathratus
+hypnea_cervicornis,Hypnea cervicornis
+hypnea_chordacea,Hypnea chordacea
+hypnea_musciformis,Hypnea caraibica
+hypnea_sp,Hypnea sp
+hypnea_spp,Hypnea sp
+isognomon_californicum,Isognomon californicum
+isognomon_perna,Isognomon perna
+jania_pumila,Jania pumila
+jania_sp,Jania sp
+laurencia_crustiformans,Palisada crustiformans
+laurencia_dendroidea,Laurencia dendroidea
+laurencia_dotyi,Chondrophycus dotyi
+laurencia_majuscula,Laurencia dendroidea
+laurencia_mcdermidiae,Laurencia mcdermidiae
+laurencia_nidifica,Laurencia nidifica
+laurencia_sp,Laurencia sp
+laurencia_spp,Laurencia sp
+leptolyngbya_crosbyana,Leptolyngbya crosbyana
+liagora_sp,Liagora sp
+liagora_spp,Liagora sp
+limestone,Limestone
+limpet,Limpet sp
+littoraria_pintado,Littoraria pintado
+lobophora_obscura,Lobophora obscura
+lobophora_sp,Lobophora obscura
+lobophora_variegata,Lobophora obscura
+loimia_medusa,Loimia medusa
+lyngbya_majuscula,Lyngbya majuscula
+lyngbya_sp,Lyngbya sp
+martensia_spp,Martensia sp
+mauritia_mauritiana,Mauritia mauritiana
+microdictyon_setchellianum,Microdictyon setchellianum
+microdictyon_sp,Microdictyon sp
+monetaria_caputserpentis,Monetaria caputserpentis
+montipora_capitata,Montipora capitata
+montipora_sp,Montipora sp
+morula_granulata,Morula granulata
+morula_sp,Morula sp
+morula_uva,Morula uva
+mud_silt,Mud Silt
+neomeris,Neomeris sp
+neomeris_sp,Neomeris sp
+neomeris_spp,Neomeris sp
+nerita_picea,Nerita picea
+nerita_polita,Nerita polita
+nesochthamalus_intertextus,Nesochthamalus intertextus
+onchidium_verruculatum,Onchidium verruculatum
+ophiocoma_brevipes,Ophiocoma brevipes
+ophiocoma_erinaceus,Ophiocoma erinaceus
+padina_sp,Padina sp
+padina_spp,Padina sp
+palisada_parvipapillata,Palisada parvipapillata
+palythoa_caesia,Palythoa caesia
+parvocaulis_parvulus,Parvocaulis parvulus
+peasiella_tantilla,Peasiella tantilla
+pebble,Pebble
+pennaria_disticha,Pennaria disticha
+pennaria_disticha_christmas_tree_hydroid,Pennaria disticha
+pocillopora_damicornis,Pocillopora damicornis
+pocillopora_sp,Pocillopora sp
+porites_lobata,Porites lobata
+porites_sp,Porites sp
+portieria,Portieria hornemannii
+portieria_hornemannii,Portieria hornemannii
+protopalythoa_spp,Protopalythoa sp
+pterocladiella,Pterocladiella sp
+pterocladiella_caerulescens,Pterocladiella caerulescens
+pterocladiella_capillacea,Pterocladiella capillacea
+pterocladiella_spp,Pterocladiella sp
+rhodymenia_spp,Rhodymenia sp
+rock,Rock
+rubble,Rubble
+sand,Sand
+sargassum_aquifolium,Sargassum aquifolium
+sargassum_polyphyllum,Sargassum polyphyllum
+sargassum_sp,Sargassum sp
+sargassum_spp,Sargassum sp
+sea_star,Sea Star sp
+siphonaria_normalis,Siphonaria normalis
+smaragdinella_calyculata,Smaragdinella calyculata
+snail_dendropoma,Dendropoma gregarium
+snail_dendropoma_gregarium,Dendropoma gregarium
+snail_littoraria,Littoraria sp
+snail_nerite,Nerite sp
+snail_serpulorbis,Serpulorbis sp
+snail_siphonaria_normalis,Siphonaria normalis
+snail_spp,Snail sp
+sphacelaria_spp,Sphacelaria sp
+sphaecelaria_sp,Sphacelaria sp
+spirobranchus_giganteus,Spirobranchus giganteus
+sponge,Sponge sp
+sponge_spp,Sponge sp
+spyridia_filamentosa,Spyridia filamentosa
+stomatopod_spp,Stomatopod sp
+stylocheilus_striatus,Stylocheilus striatus
+symploca_hydnoides,Symploca hydnoides
+symploca_hypnoides,Symploca hydnoides
+thylacodes_variabilis,Thylacodes variabilis
+trichogloea_sp,Trichogloea sp
+trichogloea_spp,Trichogloea sp
+tripneustes_gratilla,Tripneustes gratilla
+trochus_intextus,Trochus intextus
+tube_snail,Tube Snail sp
+turbinaria_ornata,Turbinaria ornata
+turf,Turf sp
+turf_spp,Turf sp
+ulva,Ulva sp
+ulva_fasciata,Ulva lactuca
+ulva_flexuosa,Ulva flexuosa
+ulva_reticulata,Ulva reticulata
+ulva_spp,Ulva sp
+unknown,Unknown
+unknown_brown,Unknown Brown
+unknown_bulbous_algae,Unknown Bulbous Algae
+unknown_cyanobacteria,Cyanobacteria sp
+unknown_fuzzy,Unknown Fuzz
+unknown_green,Unknown Green
+unknown_polychaete,Polychaete sp
+unknown_red,Unknown Red
+unknown_species,Unknown
+urchin,Urchin sp
+urchin_echinometra,Echinometra sp
+urchin_ophiocoma,Ophiocoma sp
+valonia_sp,Valonia sp
+valonia_spp,Valonia sp
+wrangelia,Wrangelia sp
+wrangelia_elegantissima,Wrangelia elegantissima
+zoanthid_spp,Zoanthid sp

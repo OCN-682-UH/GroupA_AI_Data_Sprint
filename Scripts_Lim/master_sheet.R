@@ -247,7 +247,7 @@ master_output <- bind_rows(data_2004_2020, data_2024_2026) %>%
     "length_of_transect_lines", "number_of_quadrats_per_transect", 
     "latitude", "longitude", "point_spacing", "low_tide_height", "number_of_collecting", "longest_transect_m")), ~suppressWarnings(as.numeric(gsub("[^0-9.-]", "", .)))))  %>%
   # 6. Remove duplicate entires
-  distinct(date, site_key, transect_id, position, taxon_raw, count, .keep_all = TRUE) %>%
+  distinct(date, site_key, transect_id, position, taxon_raw, count, .keep_all = TRUE)
 
 # 7. Export clean stacked master spreadsheet
 dir.create(here("Outputs"), showWarnings = FALSE, recursive = TRUE)
@@ -289,10 +289,11 @@ message("Success! Multi-tab master lookup workbook saved to outputs/master_uniqu
 
 ### Editing duplicate taxon & site names
 # Export these as easy templates to edit in Excel
-write_csv(unique_taxa, here("Outputs", "taxon_cleaning_lookup.csv"))
-write_csv(unique_sites, here("Outputs", "site_cleaning_lookup.csv"))
+#write_csv(unique_taxa, here("Outputs", "taxon_cleaning_lookup.csv"))
+#write_csv(unique_sites, here("Outputs", "site_cleaning_lookup.csv"))
+# Don't run again, only have to run once!
 
-message("Templates generated! Open 'taxon_cleaning_lookup.csv' and 'site_cleaning_lookup.csv' in Excel to assign corrections.")
+#message("Templates generated! Open 'taxon_cleaning_lookup.csv' and 'site_cleaning_lookup.csv' in Excel to assign corrections.")
 
 ### Type the fix into the CSV sheet, then run this next code
 #1. Load your manually curated mapping spreadsheet teamplates
@@ -309,14 +310,15 @@ master_output_cleaned <- master_output %>%
   
   # Merge taxon corrections
   left_join(taxon_lookup, by = "taxon_raw") %>%
-  mutate(taxon_raw = if_else(!is.na(clean_taxon_name) & clean_taxon_name != "", clean_taxon_name, taxon_raw)) %>%
+  mutate(taxon_key = if_else(!is.na(clean_taxon_name) & clean_taxon_name != "", clean_taxon_name, taxon_raw)) %>%
   select(-clean_taxon_name) %>%
+  relocate(taxon_key, .after = taxon_raw) %>%
   
   # Final structural alignment cleanup rules
   distinct(date, site_key, transect_id, position, taxon_raw, count, .keep_all = TRUE)
 
 #3. Export fully corrected, pristine data matrix architectures
-write_csv(master_output_cleaned, here("Outputs", "clean_master_sheet.csv"))
+write_csv(master_output_cleaned, here("Outputs", "final_clean_master_sheet.csv"))
 message("Success! Cleaned master sheet compiled using spreadsheet lookups.")
   
 
@@ -371,6 +373,6 @@ normalized_analysis_data <- master_output_cleaned %>%
   ungroup()
 
 # Export this complete dataset with percent cover
-write_csv(normalized_analysis_data, here("Outputs", "master_normalized_percent_cover.csv"))
+write_csv(normalized_analysis_data, here("Outputs", "clean_master_sheet_percent_cover.csv"))
 message("Success! Your normalized data sheet is ready at: Outputs/master_normalized_percent_cover.csv")
 
