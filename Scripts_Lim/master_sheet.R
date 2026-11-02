@@ -238,8 +238,8 @@ master_output <- bind_rows(data_2004_2020, data_2024_2026) %>%
   # 3. Clean up and remove the messy temporary .x and .y suffix columns
   select(-ends_with(".x"), -ends_with(".y")) %>%
   
-  # 4. Filter out missing vital keys
-  filter(!is.na(date), !is.na(site_key)) %>%
+  # 4. Filter out missing vital keys AND drop all unobserved zero records (metadata problem 2025-2026)
+  filter(!is.na(date), !is.na(site_key), count !=0) %>%
   
   # 5. Coerce string trackers back to clean numbers after the stack and join finishes
   mutate(across(any_of(c(
