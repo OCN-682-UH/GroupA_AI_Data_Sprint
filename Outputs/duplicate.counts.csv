@@ -1,0 +1,98 @@
+date,length_of_transect_lines,site_raw,site_key,latitude,longitude,school,data_entry_by,transect_id,position,taxon_raw,taxon_key,count,team_leader,team_members,stressful_events,low_tide_time,low_tide_height,number_in_field_group,longest_transect_m,weather,rain_events,wave_height,wind_speed,number_visitors,number_fishing,number_collecting,what_collecting,notes,start_time,stop_time,number_of_transect_lines,point_spacing,number_of_quadrats_per_transect
+1/10/2020,20,Kahalu'u Bay,Kahaluu Bay,19.5791,-155.967804,School_47,NA,2,0,crustose_coralline_algae,Crustose Coralline Algae,13,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,10:12:00,11:05:00,5,1,5
+1/10/2020,20,Kahalu'u Bay,Kahaluu Bay,19.5791,-155.967804,School_47,NA,2,0,crustose_coralline_algae,Crustose Coralline Algae,5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,10:12:00,11:05:00,5,1,5
+1/10/2020,20,Kahalu'u Bay,Kahaluu Bay,19.5791,-155.967804,School_47,NA,2,0,turf_spp,Turf sp,12,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,10:12:00,11:05:00,5,1,5
+1/10/2020,20,Kahalu'u Bay,Kahaluu Bay,19.5791,-155.967804,School_47,NA,2,0,turf_spp,Turf sp,11,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,10:12:00,11:05:00,5,1,5
+1/10/2020,20,Kahalu'u Bay,Kahaluu Bay,19.5791,-155.967804,School_47,NA,5,0,crustose_coralline_algae,Crustose Coralline Algae,12,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,10:12:00,11:05:00,5,1,5
+1/10/2020,20,Kahalu'u Bay,Kahaluu Bay,19.5791,-155.967804,School_47,NA,5,0,crustose_coralline_algae,Crustose Coralline Algae,11,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,10:12:00,11:05:00,5,1,5
+1/10/2020,20,Kahalu'u Bay,Kahaluu Bay,19.5791,-155.967804,School_47,NA,5,0,crustose_coralline_algae,Crustose Coralline Algae,5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,10:12:00,11:05:00,5,1,5
+1/10/2020,20,Kahalu'u Bay,Kahaluu Bay,19.5791,-155.967804,School_47,NA,5,0,turf_spp,Turf sp,3,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,10:12:00,11:05:00,5,1,5
+1/10/2020,20,Kahalu'u Bay,Kahaluu Bay,19.5791,-155.967804,School_47,NA,5,0,turf_spp,Turf sp,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,10:12:00,11:05:00,5,1,5
+1/10/2020,20,Kahalu'u Bay,Kahaluu Bay,19.5791,-155.967804,School_47,NA,5,0,turf_spp,Turf sp,2,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,10:12:00,11:05:00,5,1,5
+1/20/2019,10,Diamond Head,Leahi,21.25544,-157.8103,UH Manoa,NA,3,0,padina_spp,Padina sp,9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,10:45:00,6,12,10
+1/20/2019,10,Diamond Head,Leahi,21.25544,-157.8103,UH Manoa,NA,3,0,padina_spp,Padina sp,7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,10:45:00,6,12,10
+1/20/2019,10,Diamond Head,Leahi,21.25544,-157.8103,UH Manoa,NA,3,0,padina_spp,Padina sp,3,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,10:45:00,6,12,10
+1/20/2019,10,Diamond Head,Leahi,21.25544,-157.8103,UH Manoa,NA,3,0,padina_spp,Padina sp,6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,10:45:00,6,12,10
+1/20/2019,10,Diamond Head,Leahi,21.25544,-157.8103,UH Manoa,NA,3,0,padina_spp,Padina sp,5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,10:45:00,6,12,10
+1/20/2019,10,Diamond Head,Leahi,21.25544,-157.8103,UH Manoa,NA,3,0,sargassum_spp,Sargassum sp,4,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,10:45:00,6,12,10
+1/20/2019,10,Diamond Head,Leahi,21.25544,-157.8103,UH Manoa,NA,3,0,sargassum_spp,Sargassum sp,5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,10:45:00,6,12,10
+1/20/2019,10,Diamond Head,Leahi,21.25544,-157.8103,UH Manoa,NA,3,0,sargassum_spp,Sargassum sp,2,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,10:45:00,6,12,10
+1/20/2019,10,Diamond Head,Leahi,21.25544,-157.8103,UH Manoa,NA,3,0,turbinaria_ornata,Turbinaria ornata,2,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,10:45:00,6,12,10
+1/20/2019,10,Diamond Head,Leahi,21.25544,-157.8103,UH Manoa,NA,3,0,turbinaria_ornata,Turbinaria ornata,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,10:45:00,6,12,10
+1/20/2019,10,Diamond Head,Leahi,21.25544,-157.8103,UH Manoa,NA,3,0,turbinaria_ornata,Turbinaria ornata,10,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,10:45:00,6,12,10
+1/20/2019,10,Diamond Head,Leahi,21.25544,-157.8103,UH Manoa,NA,3,0,turf_spp,Turf sp,6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,10:45:00,6,12,10
+1/20/2019,10,Diamond Head,Leahi,21.25544,-157.8103,UH Manoa,NA,3,0,turf_spp,Turf sp,8,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,10:45:00,6,12,10
+1/20/2019,10,Diamond Head,Leahi,21.25544,-157.8103,UH Manoa,NA,3,0,turf_spp,Turf sp,10,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,10:45:00,6,12,10
+1/20/2019,10,Diamond Head,Leahi,21.25544,-157.8103,UH Manoa,NA,3,0,turf_spp,Turf sp,7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,10:45:00,6,12,10
+1/20/2019,10,Diamond Head,Leahi,21.25544,-157.8103,UH Manoa,NA,3,0,turf_spp,Turf sp,16,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,10:45:00,6,12,10
+1/20/2019,10,Diamond Head,Leahi,21.25544,-157.8103,UH Manoa,NA,3,0,turf_spp,Turf sp,12,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,10:45:00,6,12,10
+2/21/2020,20,Old Airport,Old Airport,19.643276,-156.010193,School_47,NA,3,3,padina_spp,Padina sp,4,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,10:03:00,10:40:00,5,1,5
+2/21/2020,20,Old Airport,Old Airport,19.643276,-156.010193,School_47,NA,3,3,padina_spp,Padina sp,15,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,10:03:00,10:40:00,5,1,5
+2/21/2020,20,Old Airport,Old Airport,19.643276,-156.010193,School_47,NA,3,3,turf_spp,Turf sp,21,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,10:03:00,10:40:00,5,1,5
+2/21/2020,20,Old Airport,Old Airport,19.643276,-156.010193,School_47,NA,3,3,turf_spp,Turf sp,10,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,10:03:00,10:40:00,5,1,5
+2/24/2024,NA,Mamala,Mamala Bay,NA,NA,NA,Coder_7,1,20,astronema_breviarticulatum,Asteronema breviarticulatum,5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+2/24/2024,NA,Mamala,Mamala Bay,NA,NA,NA,Coder_7,1,20,astronema_breviarticulatum,Asteronema breviarticulatum,3,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+2/24/2024,NA,Mamala,Mamala Bay,NA,NA,NA,Coder_7,1,25,bare_rock,Bare Rock,4,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+2/24/2024,NA,Mamala,Mamala Bay,NA,NA,NA,Coder_7,1,25,bare_rock,Bare Rock,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+2/24/2024,NA,Mamala,Mamala Bay,NA,NA,NA,Coder_7,2,40,sand,Sand,13,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+2/24/2024,NA,Mamala,Mamala Bay,NA,NA,NA,Coder_7,2,40,sand,Sand,11,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+3/10/2017,10,Kapukahehu Kaluakoʻi,"Kapukahehu, Kaluakoi",21.1408,-157.290115,School_39,NA,5,0,turf_spp,Turf sp,4,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,10:30:00,11:13:00,6,12,5
+3/10/2017,10,Kapukahehu Kaluakoʻi,"Kapukahehu, Kaluakoi",21.1408,-157.290115,School_39,NA,5,0,turf_spp,Turf sp,6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,10:30:00,11:13:00,6,12,5
+3/14/16,15,Waipuilani,Waipuilani,20.7537,-156.460907,School_1,NA,2,0,crustose_coralline_algae,Crustose Coralline Algae,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,13:15:00,15:00:00,3,1.5,10
+3/14/16,15,Waipuilani,Waipuilani,20.7537,-156.460907,School_1,NA,2,0,crustose_coralline_algae,Crustose Coralline Algae,2,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,13:15:00,15:00:00,3,1.5,10
+3/14/16,15,Waipuilani,Waipuilani,20.7537,-156.460907,School_1,NA,2,0,turf_spp,Turf sp,5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,13:15:00,15:00:00,3,1.5,10
+3/14/16,15,Waipuilani,Waipuilani,20.7537,-156.460907,School_1,NA,2,0,turf_spp,Turf sp,7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,13:15:00,15:00:00,3,1.5,10
+3/3/2020,8,Ewa Beach,Ewa Beach,21.310612,-158.00441,School_30,NA,1,0,padina_spp,Padina sp,9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:30:00,11:00:00,5,12,4
+3/3/2020,8,Ewa Beach,Ewa Beach,21.310612,-158.00441,School_30,NA,1,0,padina_spp,Padina sp,4,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:30:00,11:00:00,5,12,4
+4/10/2017,20,Sand Island,Mauliola,21.3002,-157.882599,School_15,NA,4,5,turf_spp,Turf sp,6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:20:00,10:10:00,7,1,5
+4/10/2017,20,Sand Island,Mauliola,21.3002,-157.882599,School_15,NA,4,5,turf_spp,Turf sp,21,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:20:00,10:10:00,7,1,5
+4/17/2018,8,Ewa Beach,Ewa Beach,21.310612,-158.00441,School_30,NA,4,4,dictyota_spp,Dictyota sp,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:15:00,10:40:00,9,1,5
+4/17/2018,8,Ewa Beach,Ewa Beach,21.310612,-158.00441,School_30,NA,4,4,dictyota_spp,Dictyota sp,4,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:15:00,10:40:00,9,1,5
+4/17/2018,8,Ewa Beach,Ewa Beach,21.310612,-158.00441,School_30,NA,4,4,turf_spp,Turf sp,9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:15:00,10:40:00,9,1,5
+4/17/2018,8,Ewa Beach,Ewa Beach,21.310612,-158.00441,School_30,NA,4,4,turf_spp,Turf sp,2,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:15:00,10:40:00,9,1,5
+4/17/2018,8,Ewa Beach,Ewa Beach,21.310612,-158.00441,School_30,NA,9,0,padina_spp,Padina sp,3,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:15:00,10:40:00,9,1,5
+4/17/2018,8,Ewa Beach,Ewa Beach,21.310612,-158.00441,School_30,NA,9,0,padina_spp,Padina sp,2,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:15:00,10:40:00,9,1,5
+4/26/2018,9.5,Kapukahehu Kaluakoʻi,"Kapukahehu, Kaluakoi",21.1408,-157.290115,School_39,NA,1,0,turf_spp,Turf sp,10,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:30:00,10:10:00,5,12,5
+4/26/2018,9.5,Kapukahehu Kaluakoʻi,"Kapukahehu, Kaluakoi",21.1408,-157.290115,School_39,NA,1,0,turf_spp,Turf sp,5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:30:00,10:10:00,5,12,5
+4/26/2018,9.5,Kapukahehu Kaluakoʻi,"Kapukahehu, Kaluakoi",21.1408,-157.290115,School_39,NA,4,0,padina_spp,Padina sp,3,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:30:00,10:10:00,5,12,5
+4/26/2018,9.5,Kapukahehu Kaluakoʻi,"Kapukahehu, Kaluakoi",21.1408,-157.290115,School_39,NA,4,0,padina_spp,Padina sp,5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:30:00,10:10:00,5,12,5
+4/26/2018,9.5,Kapukahehu Kaluakoʻi,"Kapukahehu, Kaluakoi",21.1408,-157.290115,School_39,NA,4,0,turf_spp,Turf sp,17,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:30:00,10:10:00,5,12,5
+4/26/2018,9.5,Kapukahehu Kaluakoʻi,"Kapukahehu, Kaluakoi",21.1408,-157.290115,School_39,NA,4,0,turf_spp,Turf sp,6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:30:00,10:10:00,5,12,5
+5/12/2018,25,Hulopo'e Bay,Hulopoe Bay,20.738001,-156.895004,School_20,NA,1,0,crustose_coralline_algae,Crustose Coralline Algae,21,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,8:55:00,10:06:00,3,1,13
+5/12/2018,25,Hulopo'e Bay,Hulopoe Bay,20.738001,-156.895004,School_20,NA,1,0,crustose_coralline_algae,Crustose Coralline Algae,11,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,8:55:00,10:06:00,3,1,13
+5/12/2018,25,Hulopo'e Bay,Hulopoe Bay,20.738001,-156.895004,School_20,NA,3,0,crustose_coralline_algae,Crustose Coralline Algae,15,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,8:55:00,10:06:00,3,1,13
+5/12/2018,25,Hulopo'e Bay,Hulopoe Bay,20.738001,-156.895004,School_20,NA,3,0,crustose_coralline_algae,Crustose Coralline Algae,24,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,8:55:00,10:06:00,3,1,13
+5/12/2018,25,Hulopo'e Bay,Hulopoe Bay,20.738001,-156.895004,School_20,NA,3,0,crustose_coralline_algae,Crustose Coralline Algae,14,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,8:55:00,10:06:00,3,1,13
+5/2/2018,19,Sand Island,Mauliola,21.3002,-157.882599,School_24,NA,2,0,turf_spp,Turf sp,23,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:15:00,10:30:00,6,1,5
+5/2/2018,19,Sand Island,Mauliola,21.3002,-157.882599,School_24,NA,2,0,turf_spp,Turf sp,6,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:15:00,10:30:00,6,1,5
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,3,0,turf_spp,Turf sp,15,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,3,0,turf_spp,Turf sp,5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,3,0,turf_spp,Turf sp,9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,4,0,turf_spp,Turf sp,21,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,4,0,turf_spp,Turf sp,17,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,4,0,turf_spp,Turf sp,15,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,4,0,turf_spp,Turf sp,10,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,4,0,turf_spp,Turf sp,20,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,4,0,turf_spp,Turf sp,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,4,0,turf_spp,Turf sp,24,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,5,0,turf_spp,Turf sp,15,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,5,0,turf_spp,Turf sp,10,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,5,0,turf_spp,Turf sp,11,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,5,0,turf_spp,Turf sp,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,5,0,turf_spp,Turf sp,25,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,6,0,crustose_coralline_algae,Crustose Coralline Algae,8,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,6,0,crustose_coralline_algae,Crustose Coralline Algae,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,6,0,crustose_coralline_algae,Crustose Coralline Algae,5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,6,0,turf_spp,Turf sp,15,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,6,0,turf_spp,Turf sp,9,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,6,0,turf_spp,Turf sp,13,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,6,0,turf_spp,Turf sp,11,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,6,0,turf_spp,Turf sp,5,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,8,0,littoraria_pintado,Littoraria pintado,3,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,8,0,littoraria_pintado,Littoraria pintado,2,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,8,0,turf_spp,Turf sp,11,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,8,0,turf_spp,Turf sp,10,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,8,0,turf_spp,Turf sp,4,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,8,0,turf_spp,Turf sp,20,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,8,0,turf_spp,Turf sp,8,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8
+5/20/2019,12,Kaupo,Kaupo,19.736111,-155.030838,Ka Umeke Kaeo PCS,NA,8,0,turf_spp,Turf sp,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9:45:00,11:15:00,8,2,8

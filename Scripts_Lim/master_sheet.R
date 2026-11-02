@@ -247,7 +247,7 @@ master_output <- bind_rows(data_2004_2020, data_2024_2026) %>%
     "length_of_transect_lines", "number_of_quadrats_per_transect", 
     "latitude", "longitude", "point_spacing", "low_tide_height", "number_of_collecting", "longest_transect_m")), ~suppressWarnings(as.numeric(gsub("[^0-9.-]", "", .)))))  %>%
   # 6. Remove duplicate entires
-  distinct(date, site_key, transect_id, position, taxon_raw, count, .keep_all = TRUE)
+  distinct(date, site_raw, site_key, transect_id, position, taxon_raw, count, school, latitude, longitude, stop_time, length_of_transect_lines, .keep_all = TRUE)
 
 # 7. Export clean stacked master spreadsheet
 dir.create(here("Outputs"), showWarnings = FALSE, recursive = TRUE)
@@ -315,7 +315,7 @@ master_output_cleaned <- master_output %>%
   relocate(taxon_key, .after = taxon_raw) %>%
   
   # Final structural alignment cleanup rules
-  distinct(date, site_key, transect_id, position, taxon_raw, count, .keep_all = TRUE)
+  distinct(date, site_raw, site_key, transect_id, position, taxon_raw, taxon_key, count, school, latitude, longitude, stop_time, length_of_transect_lines, .keep_all = TRUE)
 
 #3. Export fully corrected, pristine data matrix architectures
 write_csv(master_output_cleaned, here("Outputs", "final_clean_master_sheet.csv"))
@@ -376,3 +376,52 @@ normalized_analysis_data <- master_output_cleaned %>%
 write_csv(normalized_analysis_data, here("Outputs", "clean_master_sheet_percent_cover.csv"))
 message("Success! Your normalized data sheet is ready at: Outputs/master_normalized_percent_cover.csv")
 
+
+
+### Base R Pipeline Validation Script
+print("Starting Dataset Integrity Checks...")
+
+# 1. Verify data frame existence and size
+if (!exists("master_output_cleaned")) stop("Error: 'master_output_cleaned' data frame was not found!")
+if (nrow(master_output_cleaned) == 0) stop("Error: The master data frame is completely empty.")
+
+# 2. Check for missing vital keys
+if (sum(is.na(master_output_cleaned$date)) > 0) stop("Error: Missing values found in 'date' column.")
+if (sum(is.na(master_output_cleaned$site_key)) > 0) stop("Error: Missing values found in 'site_key' column.")
+
+# 3. Structural duplicates check
+duplicate_count <- master_output_cleaned %>% 
+  group_by(date, site_raw, site_key, transect_id, position, taxon_raw, taxon_key, 
+           school, latitude, longitude, stop_time, length_of_transect_lines) %>% 
+  filter(n() > 1) %>% 
+  nrow()
+
+if (duplicate_count > 0) stop("Error:", duplicate_count, "corrupted rows still found! Check your data data frames.")
+
+duplicate_count <- master_output_cleaned %>% 
+  group_by(date, site_raw, site_key, transect_id, position, taxon_raw, taxon_key, 
+           school, latitude, longitude, stop_time, length_of_transect_lines) %>% 
+  filter(n() > 1) %>% 
+  ungroup() %>%
+  # Sort them so matching pairs sit directly next to each other
+  arrange(date, site_raw, transect_id, position, taxon_raw)
+
+write_csv(duplicate_count, here("Outputs", "duplicate.counts.csv"))
+
+# 4. Data Type Verification
+if (!is.numeric(master_output_cleaned$number_of_transect_lines)) stop("Error: number_of_transect_lines is not numeric.")
+if (!is.numeric(master_output_cleaned$longest_transect_m)) stop("Error: longest_transect_m is not numeric.")
+if (!is.numeric(master_output_cleaned$low_tide_height)) stop("Error: low_tide_height is not numeric.")
+
+# 5. Regex Validation Safeguard (Check for preserved negative tide signs)
+if (!any(master_output_cleaned$low_tide_height < 0, na.rm = TRUE)) {
+  stop("Error: No negative numbers found in low_tide_height. Check if the regex stripped minus signs!")
+}
+
+# 6. Column name cleanup verification
+clashing_columns <- colnames(master_output_cleaned)[grepl("\\.x$|\\.y$", colnames(master_output_cleaned))]
+if (length(clashing_columns) > 0) {
+  stop(paste("Error: Clashing join suffixes found:", paste(clashing_columns, collapse = ", ")))
+}
+
+print("All integrity checks passed successfully! 🎉 Your dataset is clean and ready for submission.")
