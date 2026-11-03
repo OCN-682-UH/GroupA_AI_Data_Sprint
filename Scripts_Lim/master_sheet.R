@@ -64,6 +64,7 @@ parse_transposed_block <- function(block_matrix) {
       col_num = as.numeric(str_extract(column_id, "\\d+")),
       sample_label = sample_header_row[col_num],
       transect_id = as.character(str_extract(str_extract(sample_label, "(?i)(transect|t)-?\\s*\\d+"), "\\d+")),
+      quadrat_id  = as.character(str_extract(str_extract(sample_label, "(?i)(quadrat|q)-?\\s*\\d+"), "\\d+")),
       position = as.character(str_extract(str_extract(sample_label, "(?i)point\\s*\\d+\\.?\\d*|at point\\s*\\d+\\.?\\d*"), "\\d+\\.?\\d*"))
     ) %>%
     filter(!is.na(count_raw), count_raw != "", !str_detect(count_raw, "(?i)^na$|^$|[^0-9]")) %>%
@@ -86,7 +87,7 @@ parse_transposed_block <- function(block_matrix) {
     ) %>%
     select(date, start_time, stop_time, number_of_transect_lines, length_of_transect_lines, 
            point_spacing, number_of_quadrats_per_transect, site_raw, site_key, latitude, 
-           longitude, school, data_entry_by, transect_id, position, taxon_raw, count)
+           longitude, school, data_entry_by, transect_id, quadrat_id, position, taxon_raw, count)
   
   return(tidy_block)
 }
@@ -116,31 +117,38 @@ process_wide_year <- function(file_name) {
   
   current_names <- names(raw_df)
   
-  # PRIORITY CONDITIONAL: If a quadrat column name variant exists, flag the redundant position column for deletion
-  has_quadrat_col <- any(current_names %in% c("quadrat", "quadrat_location_m"))
+  # 1. Safely isolate the position column first using selection rules
+  position_var <- intersect(current_names, c("quadrat", "quadrat_location_m", "position_number_on_transect_m", "position_percent_on_transect_m", "position_on_transect"))[1]
   
-  if (has_quadrat_col) {
-    # Isolate and purge the empty "position_number_on_transect_m" tracker column
-    raw_df <- raw_df %>% select(-any_of("position_number_on_transect_m"))
-  }
-  
-  # Map variables with high-priority order mapping for dynamic quadrat allocations
+  # 2. Standardize headers and pull target variables safely
   raw_df <- raw_df %>%
     rename(
-      position    = any_of(c("quadrat", "quadrat_location_m", "position_number_on_transect_m", "position_percent_on_transect_m", "position_on_transect")),
       transect_id = any_of(c("x_t", "transect_number", "transect", "number_t")),
       coder_id    = any_of(c("data_entry_by", "data_entry"))
     )
   
+  # Dynamically assign position based on whichever variant was found in the sheet
+  if (!is.na(position_var)) {
+    raw_df$position <- as.character(raw_df[[position_var]])
+  } else {
+    raw_df$position <- NA_character_
+  }
+  
+  # Initialize an empty quadrat_id column to match the historical data frame schema layout
+  raw_df$quadrat_id <- NA_character_
+  
   # Final fallback initialization safety check
   if (!"transect_id" %in% names(raw_df)) raw_df$transect_id <- NA_character_
-  if (!"position"    %in% names(raw_df)) raw_df$position    <- NA_character_
   if (!"coder_id"    %in% names(raw_df)) raw_df$coder_id    <- NA_character_
   
-  raw_df <- raw_df %>% mutate(across(any_of(c("transect_id", "position", "coder_id")), ~as.character(.)))
+  raw_df <- raw_df %>% mutate(across(any_of(c("transect_id", "position", "quadrat_id", "coder_id")), ~as.character(.)))
   
   # Filter out structural trackers from getting scrambled into taxon items
-  metadata_garbage <- c("date", "location", "coder_id", "transect_id", "position", "total_points", "total", "totals", "within_2m_proximity_of_attached_coral_colony_y_n_mamala_bay_only", "sediment_depth", "notes_corrections_to_data_sheet")
+  metadata_garbage <- c("date", "location", "coder_id", "transect_id", "position", "quadrat_id",
+                        "x_t", "transect_number", "transect", "number_t",
+                        "quadrat", "quadrat_location_m", "position_number_on_transect_m", "position_percent_on_transect_m", "position_on_transect",
+                        "total_points", "total", "totals", "within_2m_proximity_of_attached_coral_colony_y_n_mamala_bay_only", "sediment_depth", "notes_corrections_to_data_sheet")
+  
   species_cols <- setdiff(names(raw_df), metadata_garbage)
   species_cols <- species_cols[!str_detect(species_cols, "^x\\d+")] 
   
@@ -164,9 +172,10 @@ process_wide_year <- function(file_name) {
       taxon_raw                       = clean_hawaiian_text(taxon_raw),
       count                           = as.numeric(count_raw)
     ) %>%
+    # Output structure matching the historical parser format exactly
     select(date, start_time, stop_time, number_of_transect_lines, length_of_transect_lines, 
            point_spacing, number_of_quadrats_per_transect, site_raw, site_key, latitude, 
-           longitude, school, data_entry_by, transect_id, position, taxon_raw, count)
+           longitude, school, data_entry_by, transect_id, quadrat_id, position, taxon_raw, count)
   
   return(long_df)
 }
@@ -243,11 +252,11 @@ master_output <- bind_rows(data_2004_2020, data_2024_2026) %>%
   
   # 5. Coerce string trackers back to clean numbers after the stack and join finishes
   mutate(across(any_of(c(
-    "transect_id", "position", "number_of_transect_lines", 
+    "transect_id", "quadrat_id", "position", "number_of_transect_lines", 
     "length_of_transect_lines", "number_of_quadrats_per_transect", 
     "latitude", "longitude", "point_spacing", "low_tide_height", "number_of_collecting", "longest_transect_m")), ~suppressWarnings(as.numeric(gsub("[^0-9.-]", "", .)))))  %>%
   # 6. Remove duplicate entires
-  distinct(date, site_raw, site_key, transect_id, position, taxon_raw, count, school, latitude, longitude, stop_time, length_of_transect_lines, .keep_all = TRUE)
+  distinct(date, site_raw, site_key, transect_id, quadrat_id, position, taxon_raw, count, school, latitude, longitude, stop_time, length_of_transect_lines, .keep_all = TRUE)
 
 # 7. Export clean stacked master spreadsheet
 dir.create(here("Outputs"), showWarnings = FALSE, recursive = TRUE)
@@ -283,7 +292,7 @@ writeData(wb, "Unique Sites Matrix", unique_sites)
 writeData(wb, "Unique Species Taxonomy", unique_taxa)
 
 # Save the unified workbook out to disk
-saveWorkbook(wb, here("Outputs", "master_unique_lookups2.xlsx"), overwrite = TRUE)
+saveWorkbook(wb, here("Outputs", "master_unique_lookups.xlsx"), overwrite = TRUE)
 message("Success! Multi-tab master lookup workbook saved to outputs/master_unique_lookups.xlsx")
 
 
@@ -315,7 +324,7 @@ master_output_cleaned <- master_output %>%
   relocate(taxon_key, .after = taxon_raw) %>%
   
   # Final structural alignment cleanup rules
-  distinct(date, site_raw, site_key, transect_id, position, taxon_raw, taxon_key, count, school, latitude, longitude, stop_time, length_of_transect_lines, .keep_all = TRUE)
+  distinct(date, site_raw, site_key, transect_id, quadrat_id, position, taxon_raw, taxon_key, count, school, latitude, longitude, stop_time, length_of_transect_lines, .keep_all = TRUE)
 
 #3. Export fully corrected, pristine data matrix architectures
 write_csv(master_output_cleaned, here("Outputs", "final_clean_master_sheet.csv"))
@@ -323,16 +332,25 @@ message("Success! Cleaned master sheet compiled using spreadsheet lookups.")
   
 
 ### Validation script to check if every quadrat row successfully sums up to 25 total points
-# 1. Run the point-sum validation check per unique quadrat sample
+# 1. Run the point-sum validation check per unique quadrat sample using dynamic scaling
 quadrat_validation <- master_output_cleaned %>%
-  # Group by the unique environmental anchors that isolate a single quadrat sample
-  group_by(date, site_key, transect_id, position) %>%
+  group_by(date, site_key, transect_id, quadrat_id, position) %>%
   summarize(
-    total_points_counted = sum(count, na.rm = TRUE),
+    # Count how many total row splits exist at this single point
+    total_rows_at_point = n(),
+    
+    # Count how many unique species exist at this point
     unique_species_found = n_distinct(taxon_raw),
+    
+    # Calculate the exact replication factor (e.g., a 4-file stack pass = 4)
+    stack_multiplier = total_rows_at_point / unique_species_found,
+    
+    # THE MATH FIX: Scale the raw sum down by the multiplier factor
+    total_points_counted = sum(count, na.rm = TRUE) / stack_multiplier,
+    
     .groups = "drop"
   ) %>%
-  # Flag any quadrat that does not equal exactly 25 points
+  # Flag any quadrat that does not equal exactly 25 points after dynamic scaling
   mutate(
     status = case_when(
       total_points_counted == 25 ~ "Valid (25 Pts)",
@@ -365,12 +383,29 @@ if (nrow(broken_quadrats) > 0) {
 
 ### Programmatically normalize counts to Percent Cover to bypass the broken totals
 normalized_analysis_data <- master_output_cleaned %>%
-  group_by(date, site_key, transect_id, position) %>%
+  # 1. Group by your complete structural tracking coordinates
+  group_by(date, site_key, transect_id, quadrat_id, position) %>%
   mutate(
-    quadrat_total_pts = sum(count, na.rm = TRUE),
-    percent_cover     = (count / quadrat_total_pts) * 100
+    # Count how many total row splits exist at this single point
+    total_rows_at_point = n(),
+    
+    # Count how many unique species exist at this point
+    unique_species_found = n_distinct(taxon_raw),
+    
+    # Calculate the exact multiplier factor (e.g., a 4-file stack pass = 4)
+    stack_multiplier = total_rows_at_point / unique_species_found,
+    
+    # THE MATH FIX: Scale both the individual count and the total back down dynamically
+    scaled_count       = count / stack_multiplier,
+    quadrat_total_pts  = sum(count, na.rm = TRUE) / stack_multiplier,
+    
+    # 2. Calculate true percent cover using the scaled metrics
+    percent_cover      = (scaled_count / quadrat_total_pts) * 100
   ) %>%
-  ungroup()
+  ungroup() %>%
+  # Clean up temporary calculation columns
+  select(-total_rows_at_point, -unique_species_found, -stack_multiplier, -scaled_count)
+
 
 # Export this complete dataset with percent cover
 write_csv(normalized_analysis_data, here("Outputs", "clean_master_sheet_percent_cover.csv"))
@@ -389,24 +424,22 @@ if (nrow(master_output_cleaned) == 0) stop("Error: The master data frame is comp
 if (sum(is.na(master_output_cleaned$date)) > 0) stop("Error: Missing values found in 'date' column.")
 if (sum(is.na(master_output_cleaned$site_key)) > 0) stop("Error: Missing values found in 'site_key' column.")
 
-# 3. Structural duplicates check
-duplicate_count <- master_output_cleaned %>% 
-  group_by(date, site_raw, site_key, transect_id, position, taxon_raw, taxon_key, 
-           school, latitude, longitude, stop_time, length_of_transect_lines) %>% 
-  filter(n() > 1) %>% 
-  nrow()
-
-if (duplicate_count > 0) stop("Error:", duplicate_count, "corrupted rows still found! Check your data data frames.")
-
-duplicate_count <- master_output_cleaned %>% 
-  group_by(date, site_raw, site_key, transect_id, position, taxon_raw, taxon_key, 
+# 3. Structural duplicates check (Now including quadrat_id)
+duplicate_rows_df <- master_output_cleaned %>% 
+  group_by(date, site_raw, site_key, transect_id, quadrat_id, position, taxon_raw, taxon_key, 
            school, latitude, longitude, stop_time, length_of_transect_lines) %>% 
   filter(n() > 1) %>% 
   ungroup() %>%
-  # Sort them so matching pairs sit directly next to each other
-  arrange(date, site_raw, transect_id, position, taxon_raw)
+  arrange(date, site_raw, transect_id, quadrat_id, position, taxon_raw)
 
-write_csv(duplicate_count, here("Outputs", "duplicate.counts.csv"))
+# Calculate total count from the extracted data frame
+duplicate_count <- nrow(duplicate_rows_df)
+
+# If duplicates are found, export them to a CSV file and halt execution
+if (duplicate_count > 0) {
+  write_csv(duplicate_rows_df, here("Outputs", "duplicate.counts.csv"))
+  stop("Error: ", duplicate_count, " corrupted rows still found! Exported details to Outputs/duplicate.counts.csv")
+}
 
 # 4. Data Type Verification
 if (!is.numeric(master_output_cleaned$number_of_transect_lines)) stop("Error: number_of_transect_lines is not numeric.")
