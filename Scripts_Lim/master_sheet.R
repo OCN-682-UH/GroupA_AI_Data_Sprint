@@ -8,7 +8,6 @@ library(tidyverse)
 library(janitor)
 library(stringi)
 library(here)
-library(purrr)
 library(openxlsx) 
 
 ### Standardize Hawaiian Diacritics and Names contextually ####################
@@ -255,7 +254,8 @@ master_output <- bind_rows(data_2004_2020, data_2024_2026) %>%
     "transect_id", "quadrat_id", "position", "number_of_transect_lines", 
     "length_of_transect_lines", "number_of_quadrats_per_transect", 
     "latitude", "longitude", "point_spacing", "low_tide_height", "number_of_collecting", "longest_transect_m")), ~suppressWarnings(as.numeric(gsub("[^0-9.-]", "", .)))))  %>%
-  # 6. Remove duplicate entires
+ 
+   # 6. Remove duplicate entires
   distinct(date, site_raw, site_key, transect_id, quadrat_id, position, taxon_raw, count, school, latitude, longitude, stop_time, length_of_transect_lines, .keep_all = TRUE)
 
 # 7. Export clean stacked master spreadsheet
