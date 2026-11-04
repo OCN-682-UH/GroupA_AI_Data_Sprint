@@ -1,7 +1,7 @@
 date,site_raw,site_key,latitude,longitude,transect_id,quadrat_id,position,taxon_raw,taxon_key,count,school,data_entry_by,team_leader,team_members,number_in_field_group,stressful_events,low_tide_time,low_tide_height,start_time,stop_time,weather,rain_events,wave_height,wind_speed,number_visitors,number_fishing,number_collecting,what_collecting,number_of_transect_lines,length_of_transect_lines,longest_transect_m,point_spacing,number_of_quadrats_per_transect,notes
-2/24/2024,Mamala,Mamala Bay,NA,NA,1,NA,20,astronema_breviarticulatum,Asteronema breviarticulatum,5,NA,Coder_7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-2/24/2024,Mamala,Mamala Bay,NA,NA,1,NA,20,astronema_breviarticulatum,Asteronema breviarticulatum,3,NA,Coder_7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-2/24/2024,Mamala,Mamala Bay,NA,NA,1,NA,25,bare_rock,Bare Rock,4,NA,Coder_7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-2/24/2024,Mamala,Mamala Bay,NA,NA,1,NA,25,bare_rock,Bare Rock,1,NA,Coder_7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-2/24/2024,Mamala,Mamala Bay,NA,NA,2,NA,40,sand,Sand,13,NA,Coder_7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-2/24/2024,Mamala,Mamala Bay,NA,NA,2,NA,40,sand,Sand,11,NA,Coder_7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+2024-02-24,Mamala,Mamala Bay,NA,NA,1,NA,20,astronema_breviarticulatum,Asteronema breviarticulatum,5,NA,Coder_7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+2024-02-24,Mamala,Mamala Bay,NA,NA,1,NA,20,astronema_breviarticulatum,Asteronema breviarticulatum,3,NA,Coder_7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+2024-02-24,Mamala,Mamala Bay,NA,NA,1,NA,25,bare_rock,Bare Rock,4,NA,Coder_7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+2024-02-24,Mamala,Mamala Bay,NA,NA,1,NA,25,bare_rock,Bare Rock,1,NA,Coder_7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+2024-02-24,Mamala,Mamala Bay,NA,NA,2,NA,40,sand,Sand,13,NA,Coder_7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+2024-02-24,Mamala,Mamala Bay,NA,NA,2,NA,40,sand,Sand,11,NA,Coder_7,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA

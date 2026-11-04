@@ -2654,7 +2654,7 @@ vertical-align: -.125em;
 <span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Explicitly project extracted block metadata attributes into standard columns</span></span>
 <span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a>      <span class="at">date                            =</span> <span class="fu">as.character</span>(meta_list<span class="sc">$</span>date),</span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a>      <span class="at">date                            =</span> <span class="fu">mdy</span>(meta_list<span class="sc">$</span>date),</span>
 <span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>      <span class="at">start_time                      =</span> <span class="fu">as.character</span>(meta_list<span class="sc">$</span>start_time),</span>
 <span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>      <span class="at">stop_time                       =</span> <span class="fu">as.character</span>(meta_list<span class="sc">$</span>stop_time),</span>
 <span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>      <span class="at">number_of_transect_lines        =</span> <span class="fu">as.character</span>(meta_list<span class="sc">$</span>number_of_transect_lines),</span>
@@ -2766,7 +2766,7 @@ vertical-align: -.125em;
 <span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Exclude empty rows, zero hits, and text-based missing value markers</span></span>
 <span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(count_raw), count_raw <span class="sc">!=</span> <span class="st">&quot;&quot;</span>, <span class="sc">!</span><span class="fu">str_detect</span>(count_raw, <span class="st">&quot;(?i)^na$|^$|[^0-9]&quot;</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>      <span class="at">date                            =</span> <span class="fu">as.character</span>(date),</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>      <span class="at">date                            =</span> <span class="fu">mdy</span>(date),</span>
 <span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>      <span class="at">start_time                      =</span> <span class="cn">NA_character_</span>, <span class="co">#placeholder columns to conform with Parser A output</span></span>
 <span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>      <span class="at">stop_time                       =</span> <span class="cn">NA_character_</span>,</span>
 <span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>      <span class="at">number_of_transect_lines        =</span> <span class="cn">NA_character_</span>,</span>
@@ -2811,10 +2811,11 @@ vertical-align: -.125em;
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">&quot;quad&quot;</span>, .x)               <span class="sc">~</span> <span class="st">&quot;number_of_quadrats_per_transect&quot;</span>,</span>
 <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">&quot;end|stop&quot;</span>, .x)           <span class="sc">~</span> <span class="st">&quot;stop_time&quot;</span>,</span>
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> .x <span class="co">#fallback rule: leave the original column name untouched if no pattern matches</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    ))</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(cleaned_metadata)</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    )) <span class="sc">%&gt;%</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">mdy</span>(date))</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(cleaned_metadata)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>

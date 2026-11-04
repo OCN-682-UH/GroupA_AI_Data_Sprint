@@ -94,7 +94,7 @@ parse_transposed_block <- function(block_matrix) {
     
     # Explicitly project extracted block metadata attributes into standard columns
     mutate(
-      date                            = as.character(meta_list$date),
+      date                            = mdy(meta_list$date),
       start_time                      = as.character(meta_list$start_time),
       stop_time                       = as.character(meta_list$stop_time),
       number_of_transect_lines        = as.character(meta_list$number_of_transect_lines),
@@ -197,7 +197,7 @@ process_wide_year <- function(file_name) {
     # Exclude empty rows, zero hits, and text-based missing value markers
     filter(!is.na(count_raw), count_raw != "", !str_detect(count_raw, "(?i)^na$|^$|[^0-9]")) %>%
     mutate(
-      date                            = as.character(date),
+      date                            = mdy(date),
       start_time                      = NA_character_, #placeholder columns to conform with Parser A output
       stop_time                       = NA_character_,
       number_of_transect_lines        = NA_character_,
@@ -238,7 +238,8 @@ process_metadata_sheet <- function(file_name) {
       grepl("quad", .x)               ~ "number_of_quadrats_per_transect",
       grepl("end|stop", .x)           ~ "stop_time",
       TRUE ~ .x #fallback rule: leave the original column name untouched if no pattern matches
-    ))
+    )) %>%
+    mutate(date = mdy(date))
   
   return(cleaned_metadata)
 }
@@ -540,3 +541,4 @@ if (length(clashing_columns) > 0) {
 
 # Success flag: Prints out if every single boundary guard pass evaluates perfectly
 print("All integrity checks passed successfully! 🎉 Your dataset is clean and ready for submission.")
+
