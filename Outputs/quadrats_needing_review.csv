@@ -2050,7 +2050,7 @@ date,site_key,transect_id,quadrat_id,position,total_rows_at_point,unique_species
 4/6/2017,Leahi,3,1,0.5,3,3,1,43,Overcounted
 1/20/2019,Leahi,3,1,1,4,4,1,17,Undercounted
 1/24/2026,Leahi,3,NA,1,28,7,4,24,Undercounted
-4/13/2025,Leahi,3,NA,1,5,5,1,24,Undercounted
+4/13/2025,Leahi,3,NA,1,10,5,2,24,Undercounted
 4/16/2019,Leahi,3,2,1,4,4,1,20,Undercounted
 4/17/2019,Leahi,3,1,1,4,4,1,15,Undercounted
 4/18/2019,Leahi,3,2,1,7,7,1,18,Undercounted
@@ -3293,7 +3293,7 @@ date,site_key,transect_id,quadrat_id,position,total_rows_at_point,unique_species
 3/29/05,Mauliola,3,2,6.5,1,1,1,8,Undercounted
 4/29/05,Mauliola,3,2,6.5,1,1,1,5,Undercounted
 5/6/05,Mauliola,3,2,6.5,2,2,1,9,Undercounted
-03/29/2025,Mauliola,3,NA,7,12,6,2,26,Overcounted
+03/29/2025,Mauliola,3,NA,7,6,6,1,26,Overcounted
 4/11/16,Mauliola,3,7,7,2,2,1,20,Undercounted
 2/20/16,Mauliola,3,4,8,2,2,1,15,Undercounted
 3/10/16,Mauliola,3,4,8,4,4,1,11,Undercounted

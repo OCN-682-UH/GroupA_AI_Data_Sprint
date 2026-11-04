@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Wei Shen Lim">
-<meta name="dcterms.date" content="2026-11-03">
+<meta name="dcterms.date" content="2026-11-04">
 
 <title>Creating OPIHI Master Sheet</title>
 <style>
@@ -2257,7 +2257,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 3, 2026</p>
+      <p class="date">November 4, 2026</p>
     </div>
   </div>
   
@@ -2905,15 +2905,22 @@ vertical-align: -.125em;
 <span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># F. Remove duplicate entries across full structural sampling coordinates</span></span>
 <span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(date, site_raw, site_key, transect_id, quadrat_id, position, taxon_raw, count,</span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>           school, latitude, longitude, stop_time, length_of_transect_lines, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 5.  Export clean stacked master spreadsheet (safely create directory if missing)</span></span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="fu">here</span>(<span class="st">&quot;Outputs&quot;</span>), <span class="at">showWarnings =</span> <span class="cn">FALSE</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="co"># 6.  Export finalized consolidated master long dataset to disk</span></span>
-<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(master_output, <span class="fu">here</span>(<span class="st">&quot;Outputs&quot;</span>, <span class="st">&quot;master_joined_long.csv&quot;</span>))</span>
-<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a terminal confirmation message summarizing processed row volumes</span></span>
-<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">&quot;Success! Clean dataset saved with total rows: &quot;</span>, <span class="fu">nrow</span>(master_output), <span class="st">&quot; clean rows.&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>           school, latitude, longitude, stop_time, length_of_transect_lines, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># G. Reordring the columns to make it look nice</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(school, data_entry_by, <span class="at">.after =</span> count) <span class="sc">%&gt;%</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(number_in_field_group, <span class="at">.after =</span> team_members) <span class="sc">%&gt;%</span></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(start_time, stop_time, <span class="at">.after =</span> low_tide_height) <span class="sc">%&gt;%</span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(length_of_transect_lines, longest_transect_m, <span class="at">.after =</span> number_of_transect_lines) <span class="sc">%&gt;%</span></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(notes, <span class="at">.after =</span> number_of_quadrats_per_transect)</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="co"># 5.  Export clean stacked master spreadsheet (safely create directory if missing)</span></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="fu">here</span>(<span class="st">&quot;Outputs&quot;</span>), <span class="at">showWarnings =</span> <span class="cn">FALSE</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="co"># 6.  Export finalized consolidated master long dataset to disk</span></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(master_output, <span class="fu">here</span>(<span class="st">&quot;Outputs&quot;</span>, <span class="st">&quot;master_joined_long.csv&quot;</span>))</span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a terminal confirmation message summarizing processed row volumes</span></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">&quot;Success! Clean dataset saved with total rows: &quot;</span>, <span class="fu">nrow</span>(master_output), <span class="st">&quot; clean rows.&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>

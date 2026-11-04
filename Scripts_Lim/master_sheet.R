@@ -308,7 +308,14 @@ master_output <- bind_rows(data_2004_2020, data_2024_2026) %>%
  
   # F. Remove duplicate entries across full structural sampling coordinates
   distinct(date, site_raw, site_key, transect_id, quadrat_id, position, taxon_raw, count,
-           school, latitude, longitude, stop_time, length_of_transect_lines, .keep_all = TRUE)
+           school, latitude, longitude, stop_time, length_of_transect_lines, .keep_all = TRUE) %>%
+  
+  # G. Reordring the columns to make it look nice
+  relocate(school, data_entry_by, .after = count) %>%
+  relocate(number_in_field_group, .after = team_members) %>%
+  relocate(start_time, stop_time, .after = low_tide_height) %>%
+  relocate(length_of_transect_lines, longest_transect_m, .after = number_of_transect_lines) %>%
+  relocate(notes, .after = number_of_quadrats_per_transect)
 
 # 5. Export clean stacked master spreadsheet (safely create directory if missing)
 dir.create(here("Outputs"), showWarnings = FALSE, recursive = TRUE)
