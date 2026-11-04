@@ -1,0 +1,38 @@
+﻿Column Header,Data Type,Description,Units 
+date,date,Date when field survey was conducted,MM/DD/YYYY
+site_raw,character,Original site names with accents removed,Name
+site_key,character,"Cleaned site names, overwritten by manual lookup template if corrections were provided",Name
+latitude,numeric,North-south coordinates for survey location,Decimal Degrees
+longitude,numeric,East-west coordinates for survey location,Decimal Degrees
+transect_id,numeric,Unique identifier for each transect ,ID Number
+quadrat_id,numeric,"Unique identifier for each quadrat along a given transect, defaults to NA where point positions are tracked linearly instead",ID Number
+position,numeric,Quadrat position along a given transect,Meters
+taxon_raw,character,"Original uncleaned, unchecked, raw taxon names",Name
+taxon_key,character,"Cleaned taxon names, mapped via manual lookup template to combine duplicates or fix misspellings",Name
+count,numeric,Total obseravtion tally of a given taxon for a given quadrat,Count
+school,character,School or program conducting the survey,ID Number
+data_entry_by,character,The member who entered the records,ID Number
+team_leader,character,Supervisor managing the survey group,ID Number
+team_members,character,Names of field personnel conducting the survey,ID Number
+number_in_field_group,numeric,Total headcount of active participants for the survey,Count
+stressful_events,character,Details covering high-stress events,
+low_tide_time,character,Time when low tide occurs for survey date,HH:MM:SS
+low_tide_height,numeric,"Height of low tide for survey date, processed to preserve negative numbers",Feet
+start_time,character,Time when site sampling was initialized,HH:MM:SS
+stop_time,character,Time when site sampling was completed,HH:MM:SS
+weather,character,Qualitative atmospheric condition for survey date,"Sunny, Cloudy, Partly Cloudy"
+rain_events,character,Tracking whether rain events occurred or not,"Yes, No"
+wave_height,numeric,Sea swell or breaking surface height at reef zone edge,Feet
+wind_speed,numeric,Velocity of surface airflow during survey,Miles per Hour
+number_visitors,numeric,Total headcount of recreational users at sampling site during survey,Count
+number_fishing,numeric,Total headcount of fishers at sampling site during survey,Count
+number_collecting,numeric,Total headcount of people activitely collecting at sampling site during survey,Count
+what_collecting,character,Species groups seen being removed from sampling site by collectors,Name
+number_of_transect_lines,numeric,Total number of transects across sampling site,Count
+length_of_transect_lines,numeric,Distance length spanned by each transect,Meters
+longest_transect_m,numeric,Length of the single longest transect across sampling site,Meters
+point_spacing,numeric,Distance interval between observation marks along a transect,Meters
+number_of_quadrats_per_transect,numeric,Total count of sampling quadrats along an individual transect,Count
+notes,character,"Miscellaneous field logs, observation notes, or corrections captured during data entry",
+quadrat_total_pts,numeric,Calculated total quadrat points sampled for a given quadrat,Count
+percent_cover,numeric,Scaled relative abundance of a given taxon for a given quadrat,%
