@@ -9,7 +9,7 @@ library(tidyverse)
 #Set working directory to your file that has all the private data files
 
 ############################### Function 1 ####################################
-#Anonymize School names for data files from 2004 to 2020
+#Anonymize school names for data files from 2004 to 2020
 anonymize_school_data_batch <- function(input_files) {
   
   # Step 1: Scan ALL files combined to build a unified Master Lookup Sheet
@@ -30,7 +30,8 @@ anonymize_school_data_batch <- function(input_files) {
   
   # Step 2: Loop through each file individually to anonymize its text columns
   walk(input_files, function(input_file) {
-    # Dynamically generate clean names for the output data files
+   
+     # Dynamically generate clean names for the output data files
     base_name <- str_remove(input_file, "\\.[cC][sS][vV]$")    #trims the .csv/.CSV extension off filename string
     data_output <- paste0(base_name, "_anonymized_output.csv") #appends a standardized suffix to create output filename
     
@@ -168,7 +169,7 @@ anonymize_team_batch <- function(input_files) {
     
     # Internal text replacement logic that keeps formatting structures intact
     replace_names_in_text <- function(cell_value) {
-      #immediately returns unmapped if field is empty or missing
+      # Immediately returns unmapped if field is empty or missing
       if (is.na(cell_value) || str_trim(cell_value) %in% c("", "N/A", "NA")) return(cell_value)
       
       # Capture the structural delimiters used (commas vs 'and')

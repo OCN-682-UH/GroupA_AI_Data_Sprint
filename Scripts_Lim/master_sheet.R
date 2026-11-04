@@ -12,52 +12,71 @@ library(openxlsx)
 
 ### Standardize Hawaiian Diacritics and Names contextually ####################
 clean_hawaiian_text <- function(text) {
+  
+  # Remove okina variants (curly quotes, straight quotes, backticks, and unicode characters)
   text_clean <- str_replace_all(text, "[\u02BB\u2018\u2019`']", "") 
+  
+  # Flatten kahako (macrons) and other accents down to base ASCII characters (e.g., ā becomes a)
   text_ascii <- stri_trans_general(text_clean, "Latin-ASCII")      
   
+  # Pipeline to normalize formatting for clean computer-matching keys
   text_final <- text_ascii %>%
-    str_to_lower() %>%
-    str_replace_all("[^a-z0-9]+", "_") %>%                        
-    str_remove_all("^_+|_+$")                                     
+    str_to_lower() %>%                     #force all characters to lowercase
+    str_replace_all("[^a-z0-9]+", "_") %>% #replace spaces and all non-alphanumeric punctuation with an underscore 
+    str_remove_all("^_+|_+$")              #trim leading and trailing underscores from the ends                                    
   
+  # Safety check: Preserve missing values as true character NAs, otherwise return the cleaned text
   if_else(is.na(text), NA_character_, text_final)
 }
 
 ### PARSER A: Processes Transposed Matrix Blocks (2004-2020 Layouts) ##########
 parse_transposed_block <- function(block_matrix) {
+  
+  # Drop empty padding rows and columns by confirming data content exists
   row_has_data <- rowSums(!is.na(block_matrix) & block_matrix != "") > 0
   col_has_data <- colSums(!is.na(block_matrix) & block_matrix != "") > 0
   block_matrix <- block_matrix[row_has_data, col_has_data, drop = FALSE]
+  
+  # Exit early if block contains no valid dimensions or data columns
   if (ncol(block_matrix) < 2 || nrow(block_matrix) == 0) return(NULL)
   
+  # Initialize an empty list to gather metadata parameters
   meta_list <- list()
   meta_rows <- c("Date", "Start Time", "Stop Time", "Number of Transect Lines", 
                  "Length of Transect Lines", "Point Spacing", "Number of Quadrats per transect", 
                  "Location", "latitude", "longitude", "School")
   
+  # Map metadata fields by matching column 1 strings and storing adjacent column values
   for (m in meta_rows) {
     row_idx <- which(block_matrix[, 1] == m)
     if (length(row_idx) > 0) meta_list[[clean_hawaiian_text(m)]] <- block_matrix[min(row_idx), 2]
     else meta_list[[clean_hawaiian_text(m)]] <- NA_character_
   }
   
+  # Find row boundaries containing target organism data headers
   organism_row_idx <- which(block_matrix[, 1] == "Organisms" | block_matrix[, 1] == "Organism")
   if (length(organism_row_idx) == 0) return(NULL)
   
+  # Define slicing borders by stopping right before any 'TOTALS' row calculation marker
   start_data <- min(organism_row_idx)
   totals_idx <- which(str_detect(block_matrix[, 1], "(?i)^TOTALS"))
   end_data   <- if (length(totals_idx) > 0) min(totals_idx) - 1 else nrow(block_matrix)
   
+  # Exit if boundaries cross or contain no structural row blocks
   if (start_data >= end_data) return(NULL)
   raw_data_sub <- block_matrix[start_data:end_data, , drop = FALSE]
   
+  # Save original descriptive column headers and replace with index positions to prevent parsing conflicts
   sample_header_row <- as.character(raw_data_sub[1, ])
   dummy_names <- paste0("Col_", 1:ncol(raw_data_sub))
   colnames(raw_data_sub) <- dummy_names
   
+  # Convert matrix block into a normalized database structure
   tidy_block <- raw_data_sub[-1, , drop = FALSE] %>%
     as_tibble() %>%
     rename(taxon_raw = Col_1) %>%
+    
+    # Pivot all sample data columns vertically into long rows
     pivot_longer(cols = -taxon_raw, names_to = "column_id", values_to = "count_raw") %>%
     mutate(
       col_num = as.numeric(str_extract(column_id, "\\d+")),
@@ -258,10 +277,10 @@ master_output <- bind_rows(data_2004_2020, data_2024_2026) %>%
    # 6. Remove duplicate entires
   distinct(date, site_raw, site_key, transect_id, quadrat_id, position, taxon_raw, count, school, latitude, longitude, stop_time, length_of_transect_lines, .keep_all = TRUE)
 
-# 7. Export clean stacked master spreadsheet
+# 5. Export clean stacked master spreadsheet
 dir.create(here("Outputs"), showWarnings = FALSE, recursive = TRUE)
 
-# 8. Export finalized consolidated master long dataset to disk
+# 6. Export finalized consolidated master long dataset to disk
 write_csv(master_output, here("Outputs", "master_joined_long.csv"))
 message("Success! Clean dataset saved with total rows: ", nrow(master_output), " clean rows.")
 
@@ -296,7 +315,7 @@ saveWorkbook(wb, here("Outputs", "master_unique_lookups.xlsx"), overwrite = TRUE
 message("Success! Multi-tab master lookup workbook saved to outputs/master_unique_lookups.xlsx")
 
 
-### Editing duplicate taxon & site names
+### Editing duplicate taxon & site names ######################################
 # Export these as easy templates to edit in Excel
 #write_csv(unique_taxa, here("Outputs", "taxon_cleaning_lookup.csv"))
 #write_csv(unique_sites, here("Outputs", "site_cleaning_lookup.csv"))
@@ -304,7 +323,7 @@ message("Success! Multi-tab master lookup workbook saved to outputs/master_uniqu
 
 #message("Templates generated! Open 'taxon_cleaning_lookup.csv' and 'site_cleaning_lookup.csv' in Excel to assign corrections.")
 
-### Type the fix into the CSV sheet, then run this next code
+### Type the fix into the CSV sheet, then run this next code ##################
 #1. Load your manually curated mapping spreadsheet teamplates
 taxon_lookup <- read_csv(here("Outputs", "taxon_cleaning_lookup.csv"), show_col_types = FALSE)
 site_lookup  <- read_csv(here("Outputs", "site_cleaning_lookup.csv"), show_col_types = FALSE)
@@ -413,7 +432,7 @@ message("Success! Your normalized data sheet is ready at: Outputs/master_normali
 
 
 
-### Base R Pipeline Validation Script
+### Base R Pipeline Validation Script #########################################
 print("Starting Dataset Integrity Checks...")
 
 # 1. Verify data frame existence and size
