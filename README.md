@@ -1,5 +1,5 @@
 # AI Data Sprint - Group A
-## Wei Shen Li, Fabi Zamora, Natalie Goeler-Slough, Ellie S Jones
+## Wei Shen Lim, Fabi Zamora, Natalie Goeler-Slough, Ellie S Jones
 
 ### Quarto links
 Group A Quarto PLACEHOLDER FOR LINK  
