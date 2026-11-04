@@ -2212,7 +2212,7 @@ vertical-align: -.125em;
     <h2 id="toc-title">Table of Contents</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><strong>Overview:</strong></a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><strong>Overview</strong></a></li>
   <li><a href="#part-1-anonymizing-names" id="toc-part-1-anonymizing-names" class="nav-link" data-scroll-target="#part-1-anonymizing-names"><strong>Part 1: Anonymizing Names</strong></a>
   <ul>
   <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link" data-scroll-target="#load-libraries"><strong>Load Libraries</strong></a></li>
@@ -2223,11 +2223,13 @@ vertical-align: -.125em;
   <ul>
   <li><a href="#load-libraries-1" id="toc-load-libraries-1" class="nav-link" data-scroll-target="#load-libraries-1"><strong>Load Libraries</strong></a></li>
   <li><a href="#load-functions-1" id="toc-load-functions-1" class="nav-link" data-scroll-target="#load-functions-1"><strong>Load Functions</strong></a></li>
-  <li><a href="#compile-batch-matrix-groups-and-union-pass" id="toc-compile-batch-matrix-groups-and-union-pass" class="nav-link" data-scroll-target="#compile-batch-matrix-groups-and-union-pass"><strong>Compile batch matrix groups and union pass</strong></a></li>
-  <li><a href="#check-unique-names-for-taxon_raw-site_raw-and-site_key" id="toc-check-unique-names-for-taxon_raw-site_raw-and-site_key" class="nav-link" data-scroll-target="#check-unique-names-for-taxon_raw-site_raw-and-site_key"><strong>Check unique names for taxon_raw, site_raw, and site_key</strong></a></li>
-  <li><a href="#editing-duplicate-taxon-site-names" id="toc-editing-duplicate-taxon-site-names" class="nav-link" data-scroll-target="#editing-duplicate-taxon-site-names"><strong>Editing duplicate taxon &amp; site names</strong></a></li>
-  <li><a href="#type-the-fix-into-the-csv-sheet-then-run-this-next-code" id="toc-type-the-fix-into-the-csv-sheet-then-run-this-next-code" class="nav-link" data-scroll-target="#type-the-fix-into-the-csv-sheet-then-run-this-next-code"><strong>Type the fix into the CSV sheet, then run this next code</strong></a></li>
-  <li><a href="#validation-script-to-check-if-every-quadrat-row-successfully-sums-up-to-25-total-points" id="toc-validation-script-to-check-if-every-quadrat-row-successfully-sums-up-to-25-total-points" class="nav-link" data-scroll-target="#validation-script-to-check-if-every-quadrat-row-successfully-sums-up-to-25-total-points"><strong>Validation script to check if every quadrat row successfully sums up to 25 total points</strong></a></li>
+  <li><a href="#compile-batch-matrix-groups" id="toc-compile-batch-matrix-groups" class="nav-link" data-scroll-target="#compile-batch-matrix-groups"><strong>Compile batch matrix groups</strong></a></li>
+  <li><a href="#check-unique-names-for-site-taxon" id="toc-check-unique-names-for-site-taxon" class="nav-link" data-scroll-target="#check-unique-names-for-site-taxon"><strong>Check unique names for site &amp; taxon</strong></a></li>
+  <li><a href="#edit-duplicate-taxon-site-names" id="toc-edit-duplicate-taxon-site-names" class="nav-link" data-scroll-target="#edit-duplicate-taxon-site-names"><strong>Edit duplicate taxon &amp; site names</strong></a></li>
+  <li><a href="#type-the-fix-into-the-csv-sheets-then-run-this-next-code-for-final-clean-master-sheet" id="toc-type-the-fix-into-the-csv-sheets-then-run-this-next-code-for-final-clean-master-sheet" class="nav-link" data-scroll-target="#type-the-fix-into-the-csv-sheets-then-run-this-next-code-for-final-clean-master-sheet"><strong>Type the fix into the CSV sheets, then run this next code for final clean master sheet</strong></a></li>
+  </ul></li>
+  <li><a href="#validation-script-to-check-if-every-quadrat-sums-up-to-25-total-points" id="toc-validation-script-to-check-if-every-quadrat-sums-up-to-25-total-points" class="nav-link" data-scroll-target="#validation-script-to-check-if-every-quadrat-sums-up-to-25-total-points"><strong>Validation script to check if every quadrat sums up to 25 total points</strong></a>
+  <ul>
   <li><a href="#programmatically-normalize-counts-to-percent-cover-to-bypass-the-broken-totals" id="toc-programmatically-normalize-counts-to-percent-cover-to-bypass-the-broken-totals" class="nav-link" data-scroll-target="#programmatically-normalize-counts-to-percent-cover-to-bypass-the-broken-totals"><strong>Programmatically normalize counts to Percent Cover to bypass the broken totals</strong></a></li>
   </ul></li>
   <li><a href="#base-r-pipeline-validation-script" id="toc-base-r-pipeline-validation-script" class="nav-link" data-scroll-target="#base-r-pipeline-validation-script"><strong>Base R Pipeline Validation Script</strong></a></li>
@@ -2268,7 +2270,7 @@ vertical-align: -.125em;
 
 
 <section id="overview" class="level3">
-<h3 class="anchored" data-anchor-id="overview"><strong>Overview:</strong></h3>
+<h3 class="anchored" data-anchor-id="overview"><strong>Overview</strong></h3>
 <p>This is the scripts we used to anonymized all schools, teachers, and students’ names from the raw data files, before they’re uploaded onto the public repository under <code>Data_Clean</code> folder to be used to create the final cleaned master sheet (<code>final_clean_master_sheet.csv</code>) for all raw data available from 2004-2026.</p>
 <p>Data files that were omitted as a whole include:</p>
 <ul>
@@ -2816,8 +2818,8 @@ vertical-align: -.125em;
 </details>
 </div>
 </section>
-<section id="compile-batch-matrix-groups-and-union-pass" class="level4">
-<h4 class="anchored" data-anchor-id="compile-batch-matrix-groups-and-union-pass"><strong>Compile batch matrix groups and union pass</strong></h4>
+<section id="compile-batch-matrix-groups" class="level4">
+<h4 class="anchored" data-anchor-id="compile-batch-matrix-groups"><strong>Compile batch matrix groups</strong></h4>
 <ol type="1">
 <li>Run Pipeline 1 for the 2004-2020 Transposed Batches</li>
 </ol>
@@ -2915,8 +2917,8 @@ vertical-align: -.125em;
 </details>
 </div>
 </section>
-<section id="check-unique-names-for-taxon_raw-site_raw-and-site_key" class="level4">
-<h4 class="anchored" data-anchor-id="check-unique-names-for-taxon_raw-site_raw-and-site_key"><strong>Check unique names for taxon_raw, site_raw, and site_key</strong></h4>
+<section id="check-unique-names-for-site-taxon" class="level4">
+<h4 class="anchored" data-anchor-id="check-unique-names-for-site-taxon"><strong>Check unique names for site &amp; taxon</strong></h4>
 <ol type="1">
 <li>Isolate unique <code>site_raw</code> names with their corresponding computer matching keys</li>
 </ol>
@@ -2965,8 +2967,8 @@ vertical-align: -.125em;
 </details>
 </div>
 </section>
-<section id="editing-duplicate-taxon-site-names" class="level4">
-<h4 class="anchored" data-anchor-id="editing-duplicate-taxon-site-names"><strong>Editing duplicate taxon &amp; site names</strong></h4>
+<section id="edit-duplicate-taxon-site-names" class="level4">
+<h4 class="anchored" data-anchor-id="edit-duplicate-taxon-site-names"><strong>Edit duplicate taxon &amp; site names</strong></h4>
 <p>Export these as easy templates to edit in Excel<br>
 <strong>Don’t run again cause it will overwrite, only have to run once!</strong></p>
 <div class="cell">
@@ -2979,8 +2981,8 @@ vertical-align: -.125em;
 </details>
 </div>
 </section>
-<section id="type-the-fix-into-the-csv-sheet-then-run-this-next-code" class="level4">
-<h4 class="anchored" data-anchor-id="type-the-fix-into-the-csv-sheet-then-run-this-next-code"><strong>Type the fix into the CSV sheet, then run this next code</strong></h4>
+<section id="type-the-fix-into-the-csv-sheets-then-run-this-next-code-for-final-clean-master-sheet" class="level4">
+<h4 class="anchored" data-anchor-id="type-the-fix-into-the-csv-sheets-then-run-this-next-code-for-final-clean-master-sheet"><strong>Type the fix into the CSV sheets, then run this next code for final clean master sheet</strong></h4>
 <ol type="1">
 <li>Load your manually curated mapping spreadsheet templates</li>
 </ol>
@@ -3022,8 +3024,9 @@ vertical-align: -.125em;
 </details>
 </div>
 </section>
-<section id="validation-script-to-check-if-every-quadrat-row-successfully-sums-up-to-25-total-points" class="level4">
-<h4 class="anchored" data-anchor-id="validation-script-to-check-if-every-quadrat-row-successfully-sums-up-to-25-total-points"><strong>Validation script to check if every quadrat row successfully sums up to 25 total points</strong></h4>
+</section>
+<section id="validation-script-to-check-if-every-quadrat-sums-up-to-25-total-points" class="level3">
+<h3 class="anchored" data-anchor-id="validation-script-to-check-if-every-quadrat-sums-up-to-25-total-points"><strong>Validation script to check if every quadrat sums up to 25 total points</strong></h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Show code</summary>
@@ -3113,7 +3116,6 @@ vertical-align: -.125em;
 #   total_points_counted &lt;dbl&gt;, status &lt;chr&gt;</code></pre>
 </div>
 </div>
-</section>
 <section id="programmatically-normalize-counts-to-percent-cover-to-bypass-the-broken-totals" class="level4">
 <h4 class="anchored" data-anchor-id="programmatically-normalize-counts-to-percent-cover-to-bypass-the-broken-totals"><strong>Programmatically normalize counts to Percent Cover to bypass the broken totals</strong></h4>
 <div class="cell">
@@ -3206,11 +3208,11 @@ vertical-align: -.125em;
 <span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="co"># If duplicates are found, export them to a CSV file and print out number of duplicates</span></span>
 <span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (duplicate_count <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
 <span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_csv</span>(duplicate_rows_df, <span class="fu">here</span>(<span class="st">&quot;Outputs&quot;</span>, <span class="st">&quot;duplicate.counts.csv&quot;</span>))</span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Error: &quot;</span>, duplicate_count, <span class="st">&quot; corrupted rows still found! Exported details to Outputs/duplicate.counts.csv&quot;</span>)</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Error: &quot;</span>, duplicate_count, <span class="st">&quot; duplicate rows still found! Exported details to Outputs/duplicate.counts.csv&quot;</span>)</span>
 <span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Error:  6  corrupted rows still found! Exported details to Outputs/duplicate.counts.csv</code></pre>
+<pre><code>Error:  6  duplicate rows still found! Exported details to Outputs/duplicate.counts.csv</code></pre>
 </div>
 </div>
 <ol start="4" type="1">

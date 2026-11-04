@@ -119,7 +119,7 @@ parse_transposed_block <- function(block_matrix) {
   return(tidy_block)
 }
 
-### PARSER A continue: Reads and slices wide side-by-side matrices cleanly #######################
+### PARSER A continue: Reads and slices wide side-by-side matrices cleanly ####
 process_transposed_file <- function(file_path) {
   
   # Import file without processing column types, casting directly to a matrix for positional mapping
@@ -221,7 +221,7 @@ process_wide_year <- function(file_name) {
   return(long_df)
 }
 
-### PARSER C: Processes wide Matrix Blocks (2025-2026 Metadata)
+### PARSER C: Processes wide Matrix Blocks (2025-2026 Metadata) ###############
 process_metadata_sheet <- function(file_name) {
   
   # Import environmental sheet forcing all columns to read as robust character text string values
@@ -244,7 +244,8 @@ process_metadata_sheet <- function(file_name) {
 }
 
 
-### Compile batch matrix groups and union pass ################################
+
+### Compile batch matrix groups ################################################
 # 1. Run Pipeline 1 for the 2004-2020 Transposed Batches
 # Define a character vector of target filenames sharing the historical layout structure
 old_target_files <- c(
@@ -319,7 +320,7 @@ message("Success! Clean dataset saved with total rows: ", nrow(master_output), "
 
 
 
-### Check unique names for taxon_raw, site_raw, and site_key ##################
+### Check unique names for site & taxon ########################################
 # 1. Isolate unique Site Raw names with their corresponding computer matching keys
 unique_sites <- master_output %>% 
   distinct(site_raw, site_key) %>% #isolate unique combinations of raw names and clean keys
@@ -350,13 +351,16 @@ saveWorkbook(wb, here("Outputs", "master_unique_lookups.xlsx"), overwrite = TRUE
 message("Success! Multi-tab master lookup workbook saved to outputs/master_unique_lookups.xlsx")
 
 
-### Editing duplicate taxon & site names ######################################
+
+### Edit duplicate taxon & site names ######################################
 # Export these as easy templates to edit in Excel
 #write_csv(unique_taxa, here("Outputs", "taxon_cleaning_lookup.csv"))
 #write_csv(unique_sites, here("Outputs", "site_cleaning_lookup.csv"))
 # Don't run again cause it will overwrite, only have to run once!
 
-### Type the fix into the CSV sheet, then run this next code ##################
+
+
+### Type the fix into the CSV sheets, then run this next code for final clean master sheet
 #1. Load your manually curated mapping spreadsheet templates
 taxon_lookup <- read_csv(here("Outputs", "taxon_cleaning_lookup.csv"), show_col_types = FALSE)
 site_lookup  <- read_csv(here("Outputs", "site_cleaning_lookup.csv"), show_col_types = FALSE)
@@ -384,9 +388,10 @@ master_output_cleaned <- master_output %>%
 #3. Export fully corrected, pristine data matrix architectures
 write_csv(master_output_cleaned, here("Outputs", "final_clean_master_sheet.csv"))
 message("Success! Cleaned master sheet compiled using spreadsheet lookups.")
+
   
 
-### Validation script to check if every quadrat row successfully sums up to 25 total points
+### Validation script to check if every quadrat sums up to 25 total points
 # 1. Run the point-sum validation check per unique quadrat sample using dynamic scaling
 quadrat_validation <- master_output_cleaned %>%
   # Group rows by their absolute field sampling coordinates
@@ -504,7 +509,7 @@ duplicate_count <- nrow(duplicate_rows_df)
 # If duplicates are found, export them to a CSV file and print out number of duplicates
 if (duplicate_count > 0) {
   write_csv(duplicate_rows_df, here("Outputs", "duplicate.counts.csv"))
-  cat("Error: ", duplicate_count, " corrupted rows still found! Exported details to Outputs/duplicate.counts.csv")
+  cat("Error: ", duplicate_count, " duplicate rows still found! Exported details to Outputs/duplicate.counts.csv")
 }
 
 # 4. Data Type Verification
