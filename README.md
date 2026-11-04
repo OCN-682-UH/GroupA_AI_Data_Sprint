@@ -2,10 +2,11 @@
 ## Wei Shen Li, Fabi Zamora, Natalie Goeler-Slough, Ellie S Jones
 
 ### Quarto links
-[Group A Quarto]()
+Group A Quarto PLACEHOLDER FOR LINK
 ##### This Quarto document combines all group work from data cleaning, documentation, and R workflow, as well as code for functions and figures  
 
-##### [_AI Developer Logs are located in a separate ReadMe at this link_]()  
+##### AI Usage
+_AI Developer Logs are located in a separate ReadMe at this link_ PLACEHOLDER FOR LINK 
 
 ### Data Background
 We are working with the OPIHI (Our Project in Hawai'i's Intertidal) data to clean and create plots to better understand intertidal community composition in Hawai'i.
