@@ -5,7 +5,7 @@ Created: November 4, 2026
 
 ------------------------------------------------------------------------
 
-### Wei Shen Lim
+## Wei Shen Lim
 
 For this project, I was responsible for figuring out the R data pipeline to synthesize over two decades of OPIHI intertidal survey data (2004-2026) from irregular, legacy sheets into a clean, relational master sheet. The overall structure of my workflow was hugely based on [**Fabi's**]{.underline} workflow when she first joined the two copies of the 2024 data sheets together. This included:
 
