@@ -32,7 +32,10 @@ library(plotly)
 
 ```{r Top 12 Abundace Heat Map}
 #| label: fig-cover-by-top-taxa
-#| caption: Twelve most abundant taxa, as mean percent cover per quadrat, pooled across every site in each year
+#| fig-cap: "Mean percent cover per quadrat by taxon and survey year, for the most abundant taxa within the selected functional group. Use the dropdown to switch groups."
+
+raw <- read_csv(here("Outputs", "clean_master_sheet_percent_cover.csv"),
+                show_col_types = FALSE)
 
 # The below below columns together identify ONE quadrat observation
 # Verified against the data: these give 7,108 units, every one summing to exactly 100%
@@ -41,9 +44,13 @@ quad_keys <- c("date", "site_key", "transect_id", "quadrat_id", "position")
 
 master <- read_csv(here("Outputs", "clean_master_sheet_percent_cover.csv"),
                    show_col_types = FALSE) |>
-  # mdy() because the source dates are US-ordered (3/4/04 = 4 March 2004).
-  # year() is derived once here so nothing downstream has to re-parse.
-  mutate(date = mdy(date), year = year(date))
+  mutate(
+    date = if (inherits(date, "Date")) date
+           else as_date(parse_date_time(date, orders = c("mdy", "ymd"))),
+    year = year(date)
+  )
+
+stopifnot(!any(is.na(master$year))) 
 
 # Rank taxa by total cover across the whole dataset. Summing raw percent_cover
 # Absent rows contribute nothing to a sum, so the ranking is unaffected. It is only MEANS that need the zeros made explicit.
@@ -254,7 +261,9 @@ group_heatmap(master_fg, "Coral")
 
 ```{r Interactive Heatmap with Dropdown}
 #| label: fig-cover-dropdown
-#| caption: Select a functional group and see its most abundant taxa across the survey years. 
+#| fig-cap: "Mean percent cover per quadrat by taxon and survey year, for the most abundant taxa within the selected functional group. Use the dropdown below the plot to switch groups."
+#| fig-scap: "Mean percent cover by taxon and year, by functional group"
+ 
 # Plotly cannot filter a heatmap from long data.
 # Built ONE TRACE PER GROUP up front, show only the first
 # The buttons flip which trace is visible.
