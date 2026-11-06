@@ -441,6 +441,8 @@ trends <- dens_long %>%
 
 Plotting trends:
 ```{r}
+#| label: fig-winnerslosers
+#| fig-cap: "'Winners' and 'losers' of intertidal taxa, visualizing change in individual taxa across time, calculated using a linear model of log(1 + density). Displays the 8 most positive and 8 most negative slopes, ± 95% CI."
 # Takes the 8 most positive and 8 most negative slopes, labels each as
 # Increasing or Declining, and plots slope +/- 95% CI, ordered by slope.
 # `distinct()` prevents duplicate rows if there are fewer than 16 taxa.
