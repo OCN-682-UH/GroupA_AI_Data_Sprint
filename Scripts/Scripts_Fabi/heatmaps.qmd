@@ -32,7 +32,7 @@ library(plotly)
 
 ```{r Top 12 Abundace Heat Map}
 #| label: fig-cover-by-top-taxa
-#| fig-cap: "Mean percent cover per quadrat by taxon and survey year, for the most abundant taxa within the selected functional group. Use the dropdown to switch groups."
+#| fig-cap: "Mean percent cover per quadrat by taxon and survey year, for the top 12 most abundant taxa."
 
 raw <- read_csv(here("Outputs", "clean_master_sheet_percent_cover.csv"),
                 show_col_types = FALSE)
@@ -183,6 +183,8 @@ draft_groups |>
 4.  `to_colorscale()` is a three-line adapter converting an R palette into plotly’s \[position, color\] format, so the interactive figure uses the same `mako` palette as the static ones.
 
 ```{r Reusable Summary and Plot Functions}
+#| label: fig-cover-dropdown-coral
+#| fig-cap: "Mean percent cover per quadrat by taxon and survey year, for the most abundant taxa within the selected functional group. Use the dropdown below the plot to switch groups. This is a test using one of the functional group classifiers - Coral"
 
 fg_lookup <- draft_groups # swap for read_csv(...) once signed off
 
