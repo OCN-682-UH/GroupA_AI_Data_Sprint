@@ -308,7 +308,7 @@ p_nmds_island <- ggplot(nmds_isl, aes(NMDS1, NMDS2, color = island)) +
 p_nmds_island
 ```
 
-## Species diversity across time (pooled sites):
+## Taxon diversity across time (pooled sites):
 
 ```{r}
 # ------------------------------------------------------------
@@ -327,7 +327,7 @@ div_quad <- quad_taxa %>%
 
 ```{r}
 #| label: fig-richness-pooled
-#| fig-cap: "Quadrat-level species richness (number of taxa per quadrat) across time. Every dot is one quadrat, the red line is a LOESS smooth with uncertainty band. The smooth is drawn straight across the survey gaps (2009-2015, 2021-2023), so the line there is an interpolation, not data."
+#| fig-cap: "Quadrat-level taxon richness (number of taxa per quadrat) across time. Every dot is one quadrat, the red line is a LOESS smooth with uncertainty band. The smooth is drawn straight across the survey gaps (2009-2015, 2021-2023), so the line there is an interpolation, not data."
 
 # Pooled richness plot: every dot is one quadrat (jittered vertically so
 # overlapping points are visible); the red line is a LOESS smooth of richness
@@ -340,11 +340,11 @@ p_div_pooled <- div_quad %>%
   ggplot(aes(date, richness)) +
   geom_jitter(alpha = 0.08, width = 0, height = 0.2, color = "steelblue") +
   geom_smooth(method = "loess", span = 0.6, color = "firebrick", fill = "firebrick", alpha = 0.2) +
-  labs(title = "Quadrat-level species richness across time", x = NULL, y = "Species per quadrat")
+  labs(title = "Quadrat-level taxon richness across time", x = NULL, y = "Taxa per quadrat")
 p_div_pooled
 ```
 
-## Species richness over time, by island
+## Taxon richness over time, by island
 ```{r}
 # ============================================================
 # Community richness over time, by island
@@ -377,7 +377,7 @@ island_year_rich <- rich_isl %>%
 Plotting only through 2020, where we have data across all islands:
 ```{r}
 #| label: fig-richness2020
-#| fig-cap: "Quadrat-level species richness (number of taxa per quadrat) across time, by island. Mean ± SE is plotted, with point size representing the number of quadrats sampled. Data through 2020 is plotted."
+#| fig-cap: "Quadrat-level taxon richness (number of taxa per quadrat) across time, by island. Mean ± SE is plotted, with point size representing the number of quadrats sampled. Data through 2020 is plotted."
 # Plotting function; `max_year` cuts off the x-axis (Inf = show all years).
 #   geom_ribbon   mean +/- SE band
 #   geom_line     island mean through time (connects across survey gaps)
@@ -395,9 +395,9 @@ plot_rich_island <- function(max_year = Inf) {
     scale_size_continuous(range = c(1.5, 5), name = "Quadrats") +
     guides(size = guide_legend(override.aes = list(fill = "grey40", color = "grey40")))+
     scale_x_continuous(breaks = pretty_breaks()) +
-    labs(title = "Species richness by island",
+    labs(title = "Taxon richness by island",
          subtitle = "Mean \u00b1 SE per quadrat; point size = number of quadrats sampled",
-         x = NULL, y = "Species per quadrat")
+         x = NULL, y = "Taxa per quadrat")
 }
 
 # Draws the plot using only data through 2020, where we have data for all islands 
@@ -408,7 +408,7 @@ p_rich_island_2020
 Plotting through 2026, to visualize all data:
 ```{r}
 #| label: fig-richness2026
-#| fig-cap: "Quadrat-level species richness (number of taxa per quadrat) across time, by island. Mean ± SE is plotted, with point size representing the number of quadrats sampled."
+#| fig-cap: "Quadrat-level taxon richness (number of taxa per quadrat) across time, by island. Mean ± SE is plotted, with point size representing the number of quadrats sampled."
 # Including 2024-2026 data; calling plot_rich_island() with no argument.
 plot_rich_island()
 

@@ -92,8 +92,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#loading-data" id="toc-loading-data" class="nav-link" data-scroll-target="#loading-data">Loading data</a></li>
   <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data wrangling</a></li>
   <li><a href="#nmds-plot-by-island" id="toc-nmds-plot-by-island" class="nav-link" data-scroll-target="#nmds-plot-by-island">NMDS plot by island</a></li>
-  <li><a href="#species-diversity-across-time-pooled-sites" id="toc-species-diversity-across-time-pooled-sites" class="nav-link" data-scroll-target="#species-diversity-across-time-pooled-sites">Species diversity across time (pooled sites):</a></li>
-  <li><a href="#species-richness-over-time-by-island" id="toc-species-richness-over-time-by-island" class="nav-link" data-scroll-target="#species-richness-over-time-by-island">Species richness over time, by island</a></li>
+  <li><a href="#taxon-diversity-across-time-pooled-sites" id="toc-taxon-diversity-across-time-pooled-sites" class="nav-link" data-scroll-target="#taxon-diversity-across-time-pooled-sites">Taxon diversity across time (pooled sites):</a></li>
+  <li><a href="#taxon-richness-over-time-by-island" id="toc-taxon-richness-over-time-by-island" class="nav-link" data-scroll-target="#taxon-richness-over-time-by-island">Taxon richness over time, by island</a></li>
   <li><a href="#visualizing-trends-of-winners-and-losers-per-taxon-trend-over-time" id="toc-visualizing-trends-of-winners-and-losers-per-taxon-trend-over-time" class="nav-link" data-scroll-target="#visualizing-trends-of-winners-and-losers-per-taxon-trend-over-time">Visualizing trends of “winners and losers” per-taxon trend over time</a></li>
   </ul>
 </nav>
@@ -463,8 +463,8 @@ Figure&nbsp;1: NMDS visualizing community composition shifts by island across ti
 </div>
 </div>
 </section>
-<section id="species-diversity-across-time-pooled-sites" class="level2">
-<h2 class="anchored" data-anchor-id="species-diversity-across-time-pooled-sites">Species diversity across time (pooled sites):</h2>
+<section id="taxon-diversity-across-time-pooled-sites" class="level2">
+<h2 class="anchored" data-anchor-id="taxon-diversity-across-time-pooled-sites">Taxon diversity across time (pooled sites):</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Show code</summary>
@@ -496,7 +496,7 @@ Figure&nbsp;1: NMDS visualizing community composition shifts by island across ti
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(date, richness)) <span class="sc">+</span></span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.08</span>, <span class="at">width =</span> <span class="dv">0</span>, <span class="at">height =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
 <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">span =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">"firebrick"</span>, <span class="at">fill =</span> <span class="st">"firebrick"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Quadrat-level species richness across time"</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Species per quadrat"</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Quadrat-level taxon richness across time"</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Taxa per quadrat"</span>)</span>
 <span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>p_div_pooled</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
@@ -506,15 +506,15 @@ Figure&nbsp;1: NMDS visualizing community composition shifts by island across ti
 <img src="opihi_plots_NGS_files/figure-html/fig-richness-pooled-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-richness-pooled-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Quadrat-level species richness (number of taxa per quadrat) across time. Every dot is one quadrat, the red line is a LOESS smooth with uncertainty band. The smooth is drawn straight across the survey gaps (2009-2015, 2021-2023), so the line there is an interpolation, not data.
+Figure&nbsp;2: Quadrat-level taxon richness (number of taxa per quadrat) across time. Every dot is one quadrat, the red line is a LOESS smooth with uncertainty band. The smooth is drawn straight across the survey gaps (2009-2015, 2021-2023), so the line there is an interpolation, not data.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="species-richness-over-time-by-island" class="level2">
-<h2 class="anchored" data-anchor-id="species-richness-over-time-by-island">Species richness over time, by island</h2>
+<section id="taxon-richness-over-time-by-island" class="level2">
+<h2 class="anchored" data-anchor-id="taxon-richness-over-time-by-island">Taxon richness over time, by island</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Show code</summary>
@@ -568,9 +568,9 @@ Figure&nbsp;2: Quadrat-level species richness (number of taxa per quadrat) acros
 <span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">1.5</span>, <span class="dv">5</span>), <span class="at">name =</span> <span class="st">"Quadrats"</span>) <span class="sc">+</span></span>
 <span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">size =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">fill =</span> <span class="st">"grey40"</span>, <span class="at">color =</span> <span class="st">"grey40"</span>)))<span class="sc">+</span></span>
 <span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">pretty_breaks</span>()) <span class="sc">+</span></span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Species richness by island"</span>,</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Taxon richness by island"</span>,</span>
 <span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"Mean \u00b1 SE per quadrat; point size = number of quadrats sampled"</span>,</span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Species per quadrat"</span>)</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Taxa per quadrat"</span>)</span>
 <span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Draws the plot using only data through 2020, where we have data for all islands </span></span>
@@ -584,7 +584,7 @@ Figure&nbsp;2: Quadrat-level species richness (number of taxa per quadrat) acros
 <img src="opihi_plots_NGS_files/figure-html/fig-richness2020-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-richness2020-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Quadrat-level species richness (number of taxa per quadrat) across time, by island. Mean ± SE is plotted, with point size representing the number of quadrats sampled. Data through 2020 is plotted.
+Figure&nbsp;3: Quadrat-level taxon richness (number of taxa per quadrat) across time, by island. Mean ± SE is plotted, with point size representing the number of quadrats sampled. Data through 2020 is plotted.
 </figcaption>
 </figure>
 </div>
@@ -604,7 +604,7 @@ Figure&nbsp;3: Quadrat-level species richness (number of taxa per quadrat) acros
 <img src="opihi_plots_NGS_files/figure-html/fig-richness2026-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-richness2026-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Quadrat-level species richness (number of taxa per quadrat) across time, by island. Mean ± SE is plotted, with point size representing the number of quadrats sampled.
+Figure&nbsp;4: Quadrat-level taxon richness (number of taxa per quadrat) across time, by island. Mean ± SE is plotted, with point size representing the number of quadrats sampled.
 </figcaption>
 </figure>
 </div>
