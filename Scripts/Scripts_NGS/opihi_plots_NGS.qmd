@@ -5,7 +5,10 @@ format:
   html:
     code-fold: true
     code-summary: "Show code"
+    toc: true
+    toc-location: left
     warning: false
+    message: false
 ---
 
 
