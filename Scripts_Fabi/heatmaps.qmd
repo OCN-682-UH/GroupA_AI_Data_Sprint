@@ -1,0 +1,383 @@
+---
+title: "Composition Across Decades, OPIHI Dataset"
+author: "Fabiola Gonzalez Zamora"
+format:
+  html:
+    theme: united
+    toc: true
+    toc-location: left
+    embed-resources: true
+    code-fold: true
+    code-summary: "Show Code"
+---
+
+### Making a Heat Map
+
+**Composition Across 2 Decades**
+
+- The OPIHI dataset records 7108 quadrats at 41 sites across 13 survey years, scored by point-intercept
+- @fig-cover-by-top-taxa shows the twelve most abundant taxa, as mean percent cover per quadrat, pooled across every site in each year.
+- Two taxa dominate throughout:
+  - `Turf algae` account for 30.6% of all recorded cover and `Padina` for 16.1%
+  - `Crustose coralline` algae are a distant third at 7.0%, and the remaining 204 taxa divide what is left
+
+```{r Load Libraries}
+#| warning = FALSE
+library(tidyverse)
+library(janitor)
+library(here)
+library(stringi)
+library(plotly)
+```
+
+```{r Top 12 Abundace Heat Map}
+#| label: fig-cover-by-top-taxa
+#| caption: Twelve most abundant taxa, as mean percent cover per quadrat, pooled across every site in each year
+
+# The below below columns together identify ONE quadrat observation
+# Verified against the data: these give 7,108 units, every one summing to exactly 100%
+
+quad_keys <- c("date", "site_key", "transect_id", "quadrat_id", "position")
+
+master <- read_csv(here("Outputs", "clean_master_sheet_percent_cover.csv"),
+                   show_col_types = FALSE) |>
+  # mdy() because the source dates are US-ordered (3/4/04 = 4 March 2004).
+  # year() is derived once here so nothing downstream has to re-parse.
+  mutate(date = mdy(date), year = year(date))
+
+# Rank taxa by total cover across the whole dataset. Summing raw percent_cover
+# Absent rows contribute nothing to a sum, so the ranking is unaffected. It is only MEANS that need the zeros made explicit.
+
+top_taxa <- master |>
+  group_by(taxon_key) |>
+  summarise(total = sum(percent_cover, na.rm = TRUE), .groups = "drop") |>
+  slice_max(total, n = 12) |>
+  pull(taxon_key)
+
+taxon_year <- master |>
+  filter(taxon_key %in% top_taxa) |>
+  select(all_of(quad_keys), year, taxon_key, percent_cover) |>
+  # Complete within the filtered set - absences become zeros
+  # 23,356 rows over 7,108 quadrats is ~3.3 taxa per quadrat out of 207.
+  # Without it, mean(percent_cover) = "mean cover WHEN PRESENT",
+  # For patchy species is a completely different result
+  # nesting() keeps only the quadrat x year combinations that really exist,
+  # rather than crossing every column with every other
+  complete(nesting(!!!syms(c(quad_keys, "year"))), taxon_key,
+           fill = list(percent_cover = 0)) |>
+  group_by(year, taxon_key) |>
+  summarise(
+    mean_cover = mean(percent_cover),
+    n_quadrats = n(),
+    .groups = "drop"
+  ) |>
+  # Order taxa by overall abundance so the axis isn't alphabetical
+  # Averages each taxon's yearly means to get one sort value per taxon
+  mutate(taxon_key = fct_reorder(taxon_key, mean_cover, .fun = mean))
+
+cover_by_taxa_plot <- ggplot(taxon_year, aes(x = factor(year), y = taxon_key, fill = mean_cover)) +
+  geom_tile(colour = "white", linewidth = 0.4) +
+  # Sequential single hue: lightness rises monotonically with cover, so the
+  # reader can tell which end means "more"
+  scale_fill_viridis_c(option = "mako", direction = -1,
+                       labels = scales::label_number(suffix = "%"),
+                       name = "Mean\ncover") +
+  scale_x_discrete(position = "top") +
+  labs(
+    title = "Turf and Padina dominate Hawaiʻi's intertidal across two decades",
+    subtitle = "Mean percent cover per quadrat, pooled across all sites. Top 12 taxa by abundance.",
+    x = NULL, y = NULL,
+    caption = "Point-intercept data, 7,108 quadrats at 41 sites. Quadrats with absences counted as zero\nYears 2009-2015 and 2021-2023 not surveyed."
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    panel.grid = element_blank(), # gridlines add nothing behind tiles
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.title.position = "plot",
+    plot.caption = element_text(hjust = 0, colour = "grey45", size = 7.5)
+  )
+
+cover_by_taxa_plot
+```
+
+#### Computing Means for Composition Heat Map
+
+- How the means are computed: taxon absent from a quadrat generates no row in the raw data, so the records average about 3.3 taxa per quadrat out of 207 possible.
+- Taking a mean over the rows as given would answer “mean cover when present”, which for a patchy species is a very different number from mean cover
+- Every figure here therefore completes the taxon-by-quadrat grid first, so an absence is counted as a genuine zero
+
+#### Gaps in Surveys
+
+- No surveys were carried out between 2009 and 2015, or 2021 and 2023
+- Axis categorical, so years are omitted rather than left as empty columns
+
+```{r Functional Group Classification}
+# case_when() evals top to bottom, stops at the first TRUE
+# ORDER IS THE LOGIC here
+# Every branch below sits where it does for a reason
+
+draft_groups <- master |>
+  distinct(taxon_key) |>
+  mutate(functional_group = case_when(
+
+    # Turf first, as its own category - it alone is 30.6% of all cover
+    # Kept separated so that algal composition is clearer
+    str_detect(taxon_key, regex("\\bturf\\b", ignore_case = TRUE)) ~ "Turf",
+
+    # \\bsand\\b so it cannot match inside "Cellana sandwicensis"
+    str_detect(taxon_key, regex("bare rock|^rock$|\\bsand\\b|rubble|pebble|limestone|^hole$|basalt|sediment", ignore_case = TRUE)) ~ "Substrate",
+
+    str_detect(taxon_key, regex("cyanobacteria|lyngbya|symploca", ignore_case = TRUE)) ~ "Cyanobacteria",
+
+    # Crustose coralline algae -> Algae. Must sit ABOVE the coral
+    # Otherwise "Coralline" gets caught by "coral"
+    str_detect(taxon_key, regex("crustose coralline", ignore_case = TRUE)) ~ "Algae",
+
+    # Same reasoning "Articallate Corraline" might be caught in coral
+    str_detect(taxon_key, regex("articulated coralline|^jania|galaxaura|halimeda|bornetella|neomeris|liagora|dichotomaria", ignore_case = TRUE)) ~ "Calcified algae",
+
+    str_detect(taxon_key, regex("coral|porites|montipora|pocillopora", ignore_case = TRUE)) ~ "Coral",
+
+    str_detect(taxon_key, regex("echinometra|urchin|colobocentrotus|cucumber|actinopyga|holothuria|sea star", ignore_case = TRUE)) ~ "Echinoderm",
+
+    # cellana, limpet and opihi live here - they are gastropods
+    str_detect(taxon_key, regex("snail|nerita|littorar|littorina|siphonaria|dendropoma|isognomon|thylacodes|morula|brachidontes|haminoea|serpulorbis|mussel|cellana|limpet|opihi", ignore_case = TRUE)) ~ "Mollusc",
+
+    str_detect(taxon_key, regex("barnacle|crab|grapsus|polychaete|anthopleura|anemone|hydroid|pennaria|sponge", ignore_case = TRUE)) ~ "Other invertebrate",
+
+    # \\bcrust\\b with boundaries, so "tenuicrustatus" not caught
+    str_detect(taxon_key, regex("unknown|\\bcrust\\b", ignore_case = TRUE)) ~ "Unresolved",
+
+    # Catch-all. Most of the 207 taxa are algae
+    # The majority case and goes last by design
+    TRUE ~ "Algae"
+  ))
+
+count(draft_groups, functional_group, sort = TRUE)
+
+
+# Export WITH total abundance, so review effort goes to the taxa that
+# actually move the figures rather than down the alphabet 
+draft_groups |>
+  left_join(master |> group_by(taxon_key) |>
+              summarise(total = sum(percent_cover, na.rm = TRUE)), by = "taxon_key") |>
+  arrange(functional_group, desc(total)) |>
+  write_csv(here("Outputs", "functional_groups_to_review.csv"))
+```
+
+### Grouping and Plotting Functions
+
+1.  `group_summary()` takes the master sheet and a group name and returns one row per taxon per year. It does three things in a fixed order: identify the most abundant taxa within that group, complete the taxon-by-quadrat grid so absences become zeros, then average. The order matters more than it looks.
+
+2.  `group_heatmap()` takes the same arguments and returns a ggplot. Keeping it separate from `group_summary()` means the summarized numbers can be inspected, exported or tested without drawing anything, and the same summary feeds both the static figure and the interactive one.
+
+3.  `make_matrix()` exists because plotly will not accept long data for a heat map; it needs a matrix of values with vectors for the row and column labels. `pivot_wider()` names columns in order of first appearance rather than numerically, which would silently produce a chart with its years out of sequence.
+
+4.  `to_colorscale()` is a three-line adapter converting an R palette into plotly’s \[position, color\] format, so the interactive figure uses the same `mako` palette as the static ones.
+
+```{r Reusable Summary and Plot Functions}
+
+fg_lookup <- draft_groups # swap for read_csv(...) once signed off
+
+master_fg <- master |> left_join(fg_lookup, by = "taxon_key")
+
+# group-filtered summary downstream.
+stopifnot(!any(is.na(master_fg$functional_group)))
+
+# Substrate, Turf and Unresolved are excluded from the dropdown
+# See notes at the foot of this file for why each one is out
+groups <- c("Algae", "Mollusc", "Calcified algae", "Echinoderm",
+            "Coral", "Cyanobacteria", "Other invertebrate")
+
+
+# Summarize one functional group to taxon x year
+group_summary <- function(data, group, n_taxa = 12) {
+  d <- data |> filter(functional_group == group)
+
+  # Top n taxa within this group, by total cover
+  keep <- d |>
+    group_by(taxon_key) |>
+    summarise(total = sum(percent_cover, na.rm = TRUE), .groups = "drop") |>
+    slice_max(total, n = n_taxa) |>
+    pull(taxon_key)
+
+  d |>
+    filter(taxon_key %in% keep) |>
+    select(all_of(quad_keys), year, taxon_key, percent_cover) |>
+    # Completion happens AFTER filtering, so that:
+    # 1) Zeros only needed for selected taxa
+    # 2) Grid stays small enough
+    complete(nesting(!!!syms(c(quad_keys, "year"))), taxon_key,
+             fill = list(percent_cover = 0)) |>
+    group_by(year, taxon_key) |>
+    summarise(mean_cover = mean(percent_cover),
+              n_quadrats = n(), .groups = "drop") |>
+    mutate(taxon_key = fct_reorder(taxon_key, mean_cover, .fun = mean))
+}
+
+
+# Plot one group to test functional groups, 
+group_heatmap <- function(data, group, n_taxa = 12) {
+  d <- group_summary(data, group, n_taxa)
+
+  ggplot(d, aes(x = factor(year), y = taxon_key, fill = mean_cover)) +
+    geom_tile(colour = "white", linewidth = 0.4) +
+    scale_fill_viridis_c(option = "mako", direction = -1,
+                         labels = scales::label_number(suffix = "%"),
+                         name = "Mean\ncover") +
+    scale_x_discrete(position = "top") +
+    labs(
+      title = paste0(group, ": mean percent cover per quadrat"),
+      subtitle = paste("Top", n_taxa, "taxa by abundance, pooled across all sites"),
+      x = NULL, y = NULL,
+      caption = "Point-intercept data, 7,108 quadrats at 41 sites. Absences counted as zero.\nYears 2009-2015 and 2021-2023 not surveyed."
+    ) +
+    theme_minimal(base_size = 11) +
+    theme(panel.grid = element_blank(),
+          axis.text.x = element_text(angle = 45, hjust = 1),
+          plot.title.position = "plot",
+          plot.caption = element_text(hjust = 0, colour = "grey45", size = 7.5))
+}
+
+# Test it out using one of the functional group classifiers
+group_heatmap(master_fg, "Coral")
+```
+
+### Exploring by Functional Group
+
+- Grouping to functional level is more robust, because the classification only has to be right about the kind of organism, not the species
+- @fig-cover-dropdown lets the reader select a functional group and see its most abundant taxa across the survey years
+  - Each group is drawn as its own layer and the dropdown switches between them, so the figure works in a static HTML document with no server behind it
+- Substrate is excluded because it was only recorded from 2024 onward and cannot share an axis with groups spanning the full period
+- Turf is excluded because it is a single taxon and would render as one row.
+- The `Unresolved` entries such as `Unknown Red` and `Brown Crust` is retained in the underlying data but not presented as a result, since it describes the limits of field identification rather than the community.
+
+```{r Interactive Heatmap with Dropdown}
+#| label: fig-cover-dropdown
+#| caption: Select a functional group and see its most abundant taxa across the survey years. 
+# Plotly cannot filter a heatmap from long data.
+# Built ONE TRACE PER GROUP up front, show only the first
+# The buttons flip which trace is visible.
+# Nothing is recomputed on click, so it works as static HTML
+
+
+# Build one z-matrix per group: rows = taxa, columns = years.
+# Row and column order are set explicitly, because pivot_wider() orders
+# columns by first appearance, not numerically.
+make_matrix <- function(g) {
+  d <- group_summary(master_fg, g)
+
+  # Sorted separately because pivot_wider() names columns by order
+  # Here, I sort numerically by year
+  yrs <- sort(unique(d$year))
+
+  w <- d |>
+    pivot_wider(id_cols = taxon_key, names_from = year, values_from = mean_cover) |>
+    # taxn_key is a factor order by abundance
+    # plotly draws y bottom-up
+    # ascending order puts most abundant on top
+    arrange(taxon_key) |>                       
+    # factor order = ascending abundance
+    select(taxon_key, all_of(as.character(yrs)))
+
+  list(
+    y = as.character(w$taxon_key), # plotly uses character ≠ factor
+    x = as.character(yrs),         
+    z = as.matrix(w[, -1]) # drop the label column      
+  )
+}
+
+# set_names() lets the trace and button loop address groups by name
+# as opposed to index, so they are not dropped
+mats <- set_names(map(groups, make_matrix), groups)
+
+# Make coloscale in plotly [position, color]
+to_colorscale <- function(cols) {
+  cols <- substr(cols, 1, 7)          
+  # strip alpha - plotly rejects 8-digit hex
+  n <- length(cols)
+  map(seq_len(n), \(i) list((i - 1) / (n - 1), cols[i]))
+}
+
+# rev() because mako runs dark-to-light
+# we want dark to represent more cover as opposed to less
+mako_scale <- to_colorscale(rev(viridisLite::mako(9)))
+
+# One trace per group; only the first is visible at load
+p <- plot_ly()
+for (g in groups) {
+  m <- mats[[g]]
+  p <- add_trace(p,
+    z = m$z, x = m$x, y = m$y,
+    type = "heatmap",
+    colorscale = mako_scale,
+    visible = (g == groups[1]),     # only first group drawn at load
+    xgap = 1, ygap = 1,             # the white tile borders
+    colorbar = list(
+      title        = list(text = "Mean<br>cover (%)", side = "top"),
+    # <br> no \n: potly title are HTML, so "\n" prints literally
+      x            = 1.02,          # just right of the plot area
+      xanchor      = "left",
+      y            = 1,
+      yanchor      = "top",   # top of the bar at the top of the plot
+                              # won't wonky with fewer taxa
+      len          = 0.75,          # 75% of plot height
+      lenmode      = "fraction",
+      thickness    = 14,            # pixels wide
+      outlinewidth = 0,
+      ticksuffix   = "%"
+    ),
+# <extra></extra> suppreses plotly's default "trace 0" box 
+    hovertemplate = "%{y}<br>%{x}<br>%{z:.2f}%<extra></extra>"
+  )
+}
+
+# One button per group. `groups == g` evaluates to a TRUE/FALSE vector of exactly the right length - one entry per trace, in trace order
+# Each button flips the visibility vector and swaps the title
+buttons <- map(groups, function(g) {
+  list(
+    method = "update",
+    label  = g,
+    args   = list(
+      list(visible = groups == g),
+      list(title = list(text = paste0(g, ": mean percent cover per quadrat")))
+    )
+  )
+})
+
+cover_dropdown <- p |>
+  layout(
+    title = list(text = paste0(groups[1], ": mean percent cover per quadrat"),
+                 x = 0, xanchor = "left"),
+    xaxis = list(side = "top", title = "", type = "category"),
+    yaxis = list(title = "", type = "category"),
+    height = 560, # fixed, so switching groups doesn't resize
+# Bottom margin holds  menu; top  only needs title + year labels
+# Margins are load-bearing: plotly doesn't expand for long labels,
+# Bars or menus: 
+    # Anything outside the plot area needs margin
+    # If not, plot gets squeezed to make room.
+# l: taxon, r: the colorbar, t: title + year labels, b: the menu
+# FIXED: r was 30, too narrow for the colorbar added at x = 1.02
+    margin = list(l = 180, r = 30, t = 90, b = 90),
+    updatemenus = list(list(
+      type        = "dropdown",
+      name        = "Functional group:", showarrow = FALSE,
+      direction   = "up",         # opens UPWARD, overlaying the plot
+      xref        = "paper",      # pos against figure, not the data
+      yref        = "paper",
+      x           = 1.2,
+      xanchor     = "right",      # right edge of figure 
+      y           = -0.05,
+      yanchor     = "bottom",     # menu hangs below the plot area
+      bgcolor     = "white",
+      bordercolor = "grey70",
+      borderwidth = 1,
+      font        = list(size = 9),
+      showactive  = TRUE,
+      buttons     = buttons
+    ))
+  )
+
+cover_dropdown
+```
