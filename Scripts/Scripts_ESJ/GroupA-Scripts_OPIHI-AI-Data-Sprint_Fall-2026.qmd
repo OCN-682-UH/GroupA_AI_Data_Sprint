@@ -13,6 +13,7 @@ format:
     theme: sandstone
 execute:
   cache: true
+execute-dir: project
 embed-resources: true
 code-overflow: scroll
 warning: false
