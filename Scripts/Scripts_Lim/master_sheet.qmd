@@ -20,7 +20,7 @@ code-overflow: scroll #allow scroll rather than wrap
 
 ### **Overview**
 
-This is the scripts we used to anonymized all schools, teachers, and students' names from the raw data files, before they're uploaded onto the public repository under `Data_Clean` folder to be used to create the final cleaned master sheet (`final_clean_master_sheet.csv`) for all raw data available from 2004-2026.
+These are the scripts we used to anonymized all schools, teachers, and students' names from the raw data files, before they're uploaded onto the public repository under `Data_Clean` folder to be used to create the final cleaned master sheet (`final_clean_master_sheet.csv`) for all raw data available from 2004-2026.
 
 Data files that were omitted as a whole include:
 

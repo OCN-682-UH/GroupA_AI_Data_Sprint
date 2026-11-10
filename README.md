@@ -2,12 +2,13 @@
 ## Wei Shen Lim, Fabi Zamora, Natalie Goeler-Slough, Ellie S Jones
 
 ### Quarto links
-Group A Quarto PLACEHOLDER FOR LINK  
+[Group A Quarto](https://01a1c325-cf7d-b71d-3b3e-4bd25eedcd63.share.connect.posit.cloud/)  
 
 This Quarto document combines all group work from data cleaning, documentation, and R workflow, as well as code for functions and figures.  
 
 ### AI Usage
-_AI Developer Logs are located in a separate ReadMe at this link_ PLACEHOLDER FOR LINK 
+This project required our group to utilize AI to clean and vizualize data from a community-collected dataset, utilizing best practices for transparent and reproducible research as well as the FAIR and CARE principles. 
+[_AI Developer Logs are located in a separate ReadMe at this link_]() PLACEHOLDER FOR LINK 
 
 ### Data Background
 We are working with the OPIHI (Our Project in Hawai'i's Intertidal) data to clean and create plots to better understand intertidal community composition in Hawai'i.  
