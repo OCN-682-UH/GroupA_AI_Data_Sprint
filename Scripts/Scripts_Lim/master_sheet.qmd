@@ -20,7 +20,7 @@ code-overflow: scroll #allow scroll rather than wrap
 
 ### **Overview**
 
-This is the scripts we used to anonymized all schools, teachers, and students' names from the raw data files, before they're uploaded onto the public repository under `Data_Clean` folder to be used to create the final cleaned master sheet (`final_clean_master_sheet.csv`) for all raw data available from 2004-2026.
+These are the scripts we used to anonymized all schools, teachers, and students' names from the raw data files, before they're uploaded onto the public repository under `Data_Clean` folder to be used to create the final cleaned master sheet (`final_clean_master_sheet.csv`) for all raw data available from 2004-2026.
 
 Data files that were omitted as a whole include:
 
@@ -301,6 +301,7 @@ library(tidyverse)
 library(janitor)
 library(stringi)
 library(here)
+library(DT)
 library(openxlsx) 
 ```
 
@@ -647,6 +648,9 @@ dir.create(here("Outputs"), showWarnings = FALSE, recursive = TRUE)
 write_csv(master_output, here("Outputs", "master_joined_long.csv"))
 # Print a terminal confirmation message summarizing processed row volumes
 message("Success! Clean dataset saved with total rows: ", nrow(master_output), " clean rows.")
+
+# View subset of data
+datatable(master_output) #interactive table to fully view output
 ```
 
 #### **Check unique names for site & taxon**
@@ -658,6 +662,9 @@ unique_sites <- master_output %>%
   distinct(site_raw, site_key) %>% #isolate unique combinations of raw names and clean keys
   arrange(site_key) %>%            #sort alphabetically by key to make human review easy
   mutate(clean_site_name = "")     #create an empty column for you to type corrections into
+
+# View subset of data
+datatable(unique_sites) #interactive table to fully view output
 ```
 
 2.  Isolate unique `taxon_raw` computer matching keys
@@ -667,6 +674,9 @@ unique_taxa <- master_output %>%
   distinct(taxon_raw) %>%       #isolate every unique raw taxon variation found in surveys
   arrange(taxon_raw) %>%        #sort taxonomy alphabetically
   mutate(clean_taxon_name = "") #create an empty column for you to type corrections into
+
+# View subset of data
+datatable(unique_taxa) #interactive table to fully view output
 ```
 
 3.  Build a consolidated multi-tab Excel Workbook using openxlsx
@@ -736,6 +746,9 @@ master_output_cleaned <- master_output %>%
 # Export fully corrected, pristine data matrix architectures
 write_csv(master_output_cleaned, here("Outputs", "final_clean_master_sheet.csv"))
 message("Success! Cleaned master sheet compiled using spreadsheet lookups.")
+
+# View subset of data
+datatable(master_output_cleaned) #interactive table to fully view output
 ```
 
 ### **Validation script to check if every quadrat sums up to 25 total points**
@@ -782,7 +795,6 @@ broken_quadrats <- quadrat_validation %>%
 if (nrow(broken_quadrats) > 0) {
   # Throw a visible warning message if data errors are found
   warning("Caution: Found ", nrow(broken_quadrats), " quadrats with point totals that do not equal 25.")
-  print(head(broken_quadrats, 20)) #print the top 20 problematic records for review
   
   # Export the broken quadrats to a CSV file so the team can cross-reference the paper sheets
   write_csv(broken_quadrats, here("Outputs", "quadrats_needing_review.csv"))
@@ -791,6 +803,9 @@ if (nrow(broken_quadrats) > 0) {
   # Print success notification if data checks clear perfectly
   message("Perfect Data! All processed quadrats sum up to exactly 25 points.")
 }
+
+# View subset of data
+datatable(broken_quadrats) #interactive table to fully view output
 ```
 
 #### **Programmatically normalize counts to Percent Cover to bypass the broken totals**
@@ -826,6 +841,9 @@ normalized_analysis_data <- master_output_cleaned %>%
 write_csv(normalized_analysis_data, here("Outputs", "clean_master_sheet_percent_cover.csv"))
 # Print console notification summarizing file location details
 message("Success! Your normalized data sheet is ready at: Outputs/master_normalized_percent_cover.csv")
+
+# View subset of data
+datatable(normalized_analysis_data) #interactive table to fully view output
 ```
 
 ### **Base R Pipeline Validation Script**
@@ -869,6 +887,9 @@ if (duplicate_count > 0) {
   write_csv(duplicate_rows_df, here("Outputs", "duplicate.counts.csv"))
   cat("Error: ", duplicate_count, " duplicate rows still found! Exported details to Outputs/duplicate.counts.csv")
 }
+
+# View subset of data
+datatable(duplicate_rows_df)
 ```
 
 4.  Data Type Verification

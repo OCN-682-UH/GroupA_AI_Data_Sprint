@@ -30,9 +30,20 @@ library(stringi)
 library(plotly)
 ```
 
-```{r Top 12 Abundace Heat Map}
+#### Computing Means for Composition Heat Map
+
+- How the means are computed: taxon absent from a quadrat generates no row in the raw data, so the records average about 3.3 taxa per quadrat out of 207 possible.
+- Taking a mean over the rows as given would answer “mean cover when present”, which for a patchy species is a very different number from mean cover
+- Every figure here therefore completes the taxon-by-quadrat grid first, so an absence is counted as a genuine zero
+
+#### Gaps in Surveys
+
+- No surveys were carried out between 2009 and 2015, or 2021 and 2023
+- Axis categorical, so years are omitted rather than left as empty columns
+
+```{r}
 #| label: fig-cover-by-top-taxa
-#| fig-cap: "Mean percent cover per quadrat by taxon and survey year, for the top 12 most abundant taxa."
+#| fig-cap: "Twelve most abundant taxa, as mean percent cover per quadrat, pooled across every site in each year."
 
 raw <- read_csv(here("Outputs", "clean_master_sheet_percent_cover.csv"),
                 show_col_types = FALSE)
@@ -107,16 +118,15 @@ cover_by_taxa_plot <- ggplot(taxon_year, aes(x = factor(year), y = taxon_key, fi
 cover_by_taxa_plot
 ```
 
-#### Computing Means for Composition Heat Map
+### Grouping and Plotting Functions
 
-- How the means are computed: taxon absent from a quadrat generates no row in the raw data, so the records average about 3.3 taxa per quadrat out of 207 possible.
-- Taking a mean over the rows as given would answer “mean cover when present”, which for a patchy species is a very different number from mean cover
-- Every figure here therefore completes the taxon-by-quadrat grid first, so an absence is counted as a genuine zero
+1.  `group_summary()` takes the master sheet and a group name and returns one row per taxon per year. It does three things in a fixed order: identify the most abundant taxa within that group, complete the taxon-by-quadrat grid so absences become zeros, then average. The order matters more than it looks.
 
-#### Gaps in Surveys
+2.  `group_heatmap()` takes the same arguments and returns a ggplot. Keeping it separate from `group_summary()` means the summarized numbers can be inspected, exported or tested without drawing anything, and the same summary feeds both the static figure and the interactive one.
 
-- No surveys were carried out between 2009 and 2015, or 2021 and 2023
-- Axis categorical, so years are omitted rather than left as empty columns
+3.  `make_matrix()` exists because plotly will not accept long data for a heat map; it needs a matrix of values with vectors for the row and column labels. `pivot_wider()` names columns in order of first appearance rather than numerically, which would silently produce a chart with its years out of sequence.
+
+4.  `to_colorscale()` is a three-line adapter converting an R palette into plotly’s \[position, color\] format, so the interactive figure uses the same `mako` palette as the static ones.
 
 ```{r Functional Group Classification}
 # case_when() evals top to bottom, stops at the first TRUE
@@ -172,19 +182,19 @@ draft_groups |>
   write_csv(here("Outputs", "functional_groups_to_review.csv"))
 ```
 
-### Grouping and Plotting Functions
+### Exploring by Functional Group
 
-1.  `group_summary()` takes the master sheet and a group name and returns one row per taxon per year. It does three things in a fixed order: identify the most abundant taxa within that group, complete the taxon-by-quadrat grid so absences become zeros, then average. The order matters more than it looks.
+- Grouping to functional level is more robust, because the classification only has to be right about the kind of organism, not the species
+  - @fig-cover-dropdown-coral tests the grouping and plotting function for the `Coral` classification. Not shown in final code, but each grouping was tested to verify correct classifications and visualizations.
+- @fig-cover-dropdown lets the reader select a functional group and see its most abundant taxa across the survey years
+  - Each group is drawn as its own layer and the dropdown switches between them, so the figure works in a static HTML document with no server behind it
+- Substrate is excluded because it was only recorded from 2024 onward and cannot share an axis with groups spanning the full period
+- Turf is excluded because it is a single taxon and would render as one row.
+- The `Unresolved` entries such as `Unknown Red` and `Brown Crust` is retained in the underlying data but not presented as a result, since it describes the limits of field identification rather than the community.
 
-2.  `group_heatmap()` takes the same arguments and returns a ggplot. Keeping it separate from `group_summary()` means the summarized numbers can be inspected, exported or tested without drawing anything, and the same summary feeds both the static figure and the interactive one.
-
-3.  `make_matrix()` exists because plotly will not accept long data for a heat map; it needs a matrix of values with vectors for the row and column labels. `pivot_wider()` names columns in order of first appearance rather than numerically, which would silently produce a chart with its years out of sequence.
-
-4.  `to_colorscale()` is a three-line adapter converting an R palette into plotly’s \[position, color\] format, so the interactive figure uses the same `mako` palette as the static ones.
-
-```{r Reusable Summary and Plot Functions}
+```{r}
 #| label: fig-cover-dropdown-coral
-#| fig-cap: "Mean percent cover per quadrat by taxon and survey year, for the most abundant taxa within the selected functional group. Use the dropdown below the plot to switch groups. This is a test using one of the functional group classifiers - Coral"
+#| fig-cap: "Mean percent cover per quadrat by taxon and survey year, for the most abundant taxa within the selected functional group. Use the dropdown below the plot to switch groups. This is a test using one of the functional group classifiers (Coral)"
 
 fg_lookup <- draft_groups # swap for read_csv(...) once signed off
 
@@ -252,29 +262,20 @@ group_heatmap <- function(data, group, n_taxa = 12) {
 group_heatmap(master_fg, "Coral")
 ```
 
-### Exploring by Functional Group
+```{r}
+#| label: build-cover-dropdown
+#| output: false
+#| warning: false
 
-- Grouping to functional level is more robust, because the classification only has to be right about the kind of organism, not the species
-- @fig-cover-dropdown lets the reader select a functional group and see its most abundant taxa across the survey years
-  - Each group is drawn as its own layer and the dropdown switches between them, so the figure works in a static HTML document with no server behind it
-- Substrate is excluded because it was only recorded from 2024 onward and cannot share an axis with groups spanning the full period
-- Turf is excluded because it is a single taxon and would render as one row.
-- The `Unresolved` entries such as `Unknown Red` and `Brown Crust` is retained in the underlying data but not presented as a result, since it describes the limits of field identification rather than the community.
-
-```{r Interactive Heatmap with Dropdown}
-#| label: fig-cover-dropdown
-#| fig-cap: "Mean percent cover per quadrat by taxon and survey year, for the most abundant taxa within the selected functional group. Use the dropdown below the plot to switch groups."
-#| fig-scap: "Mean percent cover by taxon and year, by functional group"
- 
 # Plotly cannot filter a heatmap from long data.
-# Built ONE TRACE PER GROUP up front, show only the first
+# Built ONE TRACE PER GROUP up front, show only the first.
 # The buttons flip which trace is visible.
-# Nothing is recomputed on click, so it works as static HTML
-
+# Nothing is recomputed on click, so it works as static HTML.
 
 # Build one z-matrix per group: rows = taxa, columns = years.
 # Row and column order are set explicitly, because pivot_wider() orders
 # columns by first appearance, not numerically.
+
 make_matrix <- function(g) {
   d <- group_summary(master_fg, g)
 
@@ -370,10 +371,9 @@ cover_dropdown <- p |>
     # If not, plot gets squeezed to make room.
 # l: taxon, r: the colorbar, t: title + year labels, b: the menu
 # FIXED: r was 30, too narrow for the colorbar added at x = 1.02
-    margin = list(l = 180, r = 30, t = 90, b = 90),
+    margin = list(l = 180, r = 100, t = 90, b = 140),
     updatemenus = list(list(
       type        = "dropdown",
-      name        = "Functional group:", showarrow = FALSE,
       direction   = "up",         # opens UPWARD, overlaying the plot
       xref        = "paper",      # pos against figure, not the data
       yref        = "paper",
@@ -387,8 +387,20 @@ cover_dropdown <- p |>
       font        = list(size = 9),
       showactive  = TRUE,
       buttons     = buttons
-    ))
-  )
+    )),
+      text = "Functional group:", showarrow = FALSE,
+      xref = "paper", yref = "paper",
+      x = 0.78, xanchor = "right", y = -0.15, yanchor = "top",
+      font = list(size = 11, color = "grey40")
+    )
+```
 
+::: {#fig-cover-dropdown}
+```{r}
+#| echo: false
+#| warning: false
 cover_dropdown
 ```
+
+Mean percent cover per quadrat by taxon and survey year, for the most abundanttaxa within functional group. Use the dropdown to switch groups. Color scales independently within each functional group, so shading is comparable within a selection but not between selections.
+:::

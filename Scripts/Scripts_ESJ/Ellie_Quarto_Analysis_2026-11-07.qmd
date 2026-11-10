@@ -1,0 +1,84 @@
+---
+title: "OPIHI Data Analysis - Group A - OCN 682 Fall 2026"
+author: "Ellie S Jones"
+date: "November 7, 2026"
+format:
+  html:
+    code-fold: true
+    code-summary: "Show Code"
+    theme: sandstone
+execute:
+  cache: true
+embed-resources: true
+code-overflow: scroll
+warning: false
+message: false
+---
+
+## Data analysis
+This Quarto document shows data analysis used to identify trends in data from Our Project in Hawaiʻi's Intertidal (OPIHI).
+
+### Loading libraries
+```{r}
+#| warning: false
+#| message: false
+library(tidyverse)
+library(here)
+library(praise)
+```
+
+### Loading and filtering data
+```{r}
+#| warning: false
+#| message: false
+
+tidal_raw_data <- read_csv(here("Outputs", "clean_master_sheet_percent_cover.csv"))
+view(tidal_raw_data)
+
+tidal_data_clean <- tidal_raw_data |>
+  mutate(year = year(as.Date(date)),                                               # Create a column for year only
+         transect_id = ifelse(is.na(transect_id), "T0",paste0("T",transect_id)),   # Clean up NAs in transect/quadrat IDs if present
+         quadrat_id = ifelse(is.na(quadrat_id), "Q0", paste0("Q", quadrat_id)),
+         sample_id = paste(site_key,date,transect_id,quadrat_id,sep="_")) |>         # create a new column with a sample ID for each line for the PERMANOVA
+  select(sample_id,year,site_key,taxon_key,percent_cover) |>                       # Select only the columns we want to keep for analysis
+  filter(!is.na(taxon_key),!is.na(percent_cover))                                  # Filter out the columns with NA values
+view(tidal_data_clean)
+```
+
+### Performing a PERMANOVA analysis utilizing AI scripted code guidance
+```{r}
+## Load libraries
+library(vegan)
+
+## Pivot dataframe to wide format
+tidal_data_wide <- tidal_data_clean |>
+  group_by(sample_id,year,site_key,taxon_key) |>
+  summarise(percent_cover = mean(percent_cover,na.rm=TRUE),.groups="drop") |>  # Summarize data by average percent cover
+  pivot_wider(names_from = taxon_key,
+              values_from = percent_cover,
+              values_fill=0)                                                   # Fill absent taxa with 0% cover
+view(tidal_data_wide)
+
+## Separate metadata and species matrix with row names for vegan package
+spp_matrix <- tidal_data_wide |>            # Create a matrix of species data with sample_id as row names
+  select(-year,-site_key) |>
+  column_to_rownames(var = "sample_id") |>
+  as.matrix()
+valid_samples <- rowSums(spp_matrix) >0     # Filter out any samples that have 0 total cover across all taxa
+spp_matrix <- spp_matrix[valid_samples, ]
+meta <- tidal_data_wide |>                  # Create metadata dataframe aligned exactly to spp_matrix
+  select(sample_id,year,site_key) |>
+  filter(sample_id %in% rownames(spp_matrix)) |>
+  column_to_rownames(var="sample_id") |>
+  mutate(year = as.factor(year)) 
+
+## Use Bray-Curtis dissimilarity, which is standard for community percent cover data
+dist_matrix <- vegdist(spp_matrix,method="bray")     # Calculate the Bray-Curtis distance matrix
+permanova_result <- adonis2(dist_matrix~year,
+                            data = meta,
+                            permutations = 99,
+                            by = "terms")
+
+print(permanova_result)
+```
+

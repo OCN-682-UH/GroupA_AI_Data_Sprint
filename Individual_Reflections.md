@@ -60,3 +60,17 @@ AI models (especially Claude) were extremely valuable in my work for this projec
 The biggest issues I ran into while using AI were problems that I noticed myself, where visualizing these issues on the plots given the project parameters we knew was helpful for initial identification *(i.e. richness values of 20+ per quadrat when there's a max of 25 possible points per quadrat, as described in my `AI Developer Log`)*. After I identified an issue, the AI models were helpful in generating diagnostic code to identify where the issue stemmed from, how to fix it, and which verification checks make sense to run. I also never uploaded the full dataset to the AI model, which is definitely best-practice (especially when working with someone else's data), but I think this also contributed to some of the AI errors. I only gave it the `glimpse()` of the csv file, so it wouldn't have been able to see some of the duplicates and issues in later years.
 
 I think AI is an extremely powerful tool that can be used to help code efficiently, but I think a lot of manual checking and verification has to be done to ensure that the code that's written is actually doing what you think it is, and to ensure that any data wrangling is ouputting what you actually want it to for the context of your project. AI often won't know the project parameters and/or nuances of your data, so as a researcher, taking the sufficient time to verify that any code and output is representative of your actual data is key.
+
+## Ellie S Jones
+
+For our group OPIHI Data Sprint, my primary responsibility was compiling all scripts and AI developer logs into single Quarto and ReadMe documents for our group project.  
+
+Later, I also wanted to play with the data to learn from the AI portion of the project, so I decided to test out using AI to help me run some statistics. I was slightly apprehensive; I was raised on the understanding that you should put your best work into your own work 100% of the time, and somehow that translated in my head to an idea that if you use AI to do your work, then it is not entirely "yours," and therefore not your best effort. I really appreciated this assignment as an opportunity to challenge that personal perception and use AI as a tool rather than being afraid of it.  
+
+A few key things I learned:
+- Creating tibbles to test the AI prompts prior to using your own data ensures you will not be blindly running code on datasets  
+- I liked to let AI help suggest code, and then type it into my scripts myself to test each piece one by one  
+- AI will sometimes code itself into a corner. By this I mean that when debugging, I noticed that the AI had a tendency to add on multiple lines of code to manipulate the data into the arguments it wanted to make, but sometimes the best option was to retrace your steps and clean it from the beginning rather than doing backflips to make it fit the AI's code. This is where I felt my brain come in the most handy, instead of just plugging and chugging with whatever the AI suggested  
+- Marine ecologists still have no need to fear AI taking our jobs - Google Gemini had a really challenging time figuring out what a sea anemone was  
+
+I appreciated this assignment a lot. I feel as though I am less scared to use AI, and have the foundational coding language knowledge to understand what I am asking it to do and what output it is providing me. Mahalo for assigning this!
